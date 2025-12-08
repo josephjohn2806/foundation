@@ -5,24 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stephen & Grace Safe Haven Foundation</title>
     <link rel="stylesheet" href="styles/foundation.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <!-- Hero Section -->
+
+    <nav class="navbar">
+    <div class="logo">SAFE HAVEN FOUNDATION</div>
+    
+    <!-- Home Icon with dropdown -->
+    <div class="home-menu">
+        <div class="home-icon">
+            <span class="material-icons">home</span>
+        </div>
+        <div class="dropdown">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="programs.html">What We Do</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </div>
+</nav>
+
+    <!-- HERO SECTION WITH IMAGE INSIDE -->
     <header class="hero">
-        <img src="images/havensafe.jpg" alt="Children playing safely" class="hero-image">
-        <div class="hero-content">
-            <h1>Welcome to Stephen & Grace Safe Haven Foundation</h1>
-            <p>“Restoring Hope, Protecting Every Child.”</p>
-            <a href="about.html" class="btn">Learn More</a>
-            <a href="what-we-do.html" class="btn">What We Do</a>
+
+        <!-- LEFT TEXT -->
+        <div class="hero-left">
+            <span class="tag">GENERAL</span>
+            <h1>Restoring Hope, Protecting Every Child</h1>
+            <p class="intro-text">
+                Stephen & Grace Safe Haven Foundation is committed to giving vulnerable
+                children a safe place to grow, learn, and rediscover hope.  
+                We believe every child deserves love, education, and protection.
+            </p>
+            <a href="about.html" class="read-more">Read More</a>
         </div>
     </header>
 
-    <!-- Quick Overview -->
-    <section class="overview">
-        <h2>Our Mission</h2>
-        <p>To provide comprehensive care, safety, and empowerment for children living in dangerous environments — particularly survivors of assault — through protection, counseling, education, and community engagement.</p>
-        <a href="contact.html" class="btn">Contact Us</a>
+    <!-- ABOUT SECTION (SHORT NOTE) -->
+    <section class="about-section">
+        <h2>Who We Are</h2>
+        <p>
+            Stephen & Grace Safe Haven Foundation is a community-based organization 
+            dedicated to supporting orphans, vulnerable families, and children at risk.  
+            Through education, shelter, counseling, and spiritual nurturing,  
+            we work to build brighter futures and restore dignity to every life we touch.
+        </p>
     </section>
+
+    <!-- Image Section -->
+    <section class="hero-image-section">
+        <img src="images/child.jpg" alt="Children safe" class="hero-img">
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <h3>Follow Us</h3>
+       <div class="social-links">
+    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+</div>
+        <p class="footer-text">
+            © 2025 Stephen & Grace Safe Haven Foundation.<br> All Rights Reserved.
+        </p>
+    </footer>
+
+    <!-- MOBILE MENU SCRIPT -->
+    <script>
+        const menuIcon = document.querySelector('.menu-icon');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuIcon.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+    </script>
+
 </body>
 </html>
