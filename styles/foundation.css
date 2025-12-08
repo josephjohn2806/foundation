@@ -24,18 +24,19 @@ a {
 .navbar {
     width: 100%;
     padding: 15px 50px;
-    background-color: rgba(26, 26, 26, 0.85); /* semi-transparent black */
+    background-color: #222; /* semi-transparent black */
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 1000;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     backdrop-filter: blur(10px); /* glass effect */
     transition: all 0.3s ease;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(90deg,#00cfff,#ff7f50);
 }
 
 /* Logo styling */
@@ -43,8 +44,34 @@ a {
     font-size: 1.9rem;
     font-weight: bold;
     color: #fefefe;
-    letter-spacing: 1px;
+    letter-spacing: 1px;   
 }
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* space between logo and text */
+    cursor: pointer;
+}
+
+.navbar .logo img {
+    height: 60px; /* adjust as needed */
+    width: auto; /* keeps aspect ratio */
+}
+
+.navbar .logo span {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    font-size: 1.6rem;
+    color: #00cfff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.navbar .logo:hover span {
+    color: #ff7f50;
+}
+
 /*===========================
    HOME ICON NAVIGATION
 ===========================*/
@@ -200,20 +227,6 @@ a {
     overflow: hidden;
 }
 
-/* Background image fully covers section */
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.2)), 
-                url('../images/havenkids.jpg') center/cover no-repeat; /* full cover */
-    z-index: 1;
-}
-
-
 
 .hero-left, .hero-right {
     position: relative;
@@ -221,7 +234,9 @@ a {
 }
 
 .hero-left {
+    
     max-width: 50%;
+    
 }
 
 .hero-left .tag {
@@ -231,7 +246,7 @@ a {
     padding: 5px 15px;
     font-size: 0.85rem;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-weight: 600;
 }
 
@@ -255,7 +270,7 @@ a {
     padding: 12px 25px;
     background-color: #00cfff; /* cyan button */
     color: #000;
-    font-weight: 600;
+    font-weight: 700;
     border-radius: 5px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
@@ -953,7 +968,7 @@ header p {
     align-items: center;
     width: 50px;
     height: 50px;
-    background: #222;
+    background: black;
     color: #fff;
     border-radius: 50%;
     font-size: 1.2rem;
