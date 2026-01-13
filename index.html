@@ -21,7 +21,7 @@
         /* --- Navigation --- */
         .navbar {
             background: var(--white);
-            padding: 10px 5%;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -31,7 +31,14 @@
             z-index: 1000;
         }
 
-        .logo img { height: 60px; }
+        /* Text-based Logo Styling */
+        .logo-text { 
+            font-weight: 600; 
+            font-size: 1.4rem; 
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         .nav-links {
             display: flex;
@@ -62,13 +69,13 @@
 
         .slides {
             display: flex;
-            width: 500%;
+            width: 500%; 
             height: 100%;
             transition: transform 0.8s ease-in-out;
         }
 
         .slide {
-            width: 20%;
+            width: 20%; 
             height: 100%;
             background-size: cover;
             background-position: center;
@@ -77,7 +84,6 @@
             justify-content: center;
         }
 
-        /* Hero Text Overlay */
         .hero-content {
             background: rgba(0, 0, 0, 0.5);
             color: white;
@@ -99,14 +105,12 @@
             font-weight: 600;
         }
 
-        /* --- Sections --- */
         .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
         
         .about-section { text-align: center; margin-bottom: 40px; }
         .about-section h2 { color: var(--primary); font-size: 2.5rem; }
         .about-section p { font-size: 1.1rem; color: #555; max-width: 800px; margin: auto; }
 
-        /* --- Footer --- */
         .footer {
             background: var(--primary);
             color: white;
@@ -124,12 +128,11 @@
 
         .social-links a:hover { color: var(--accent); }
 
-        /* Mobile Adjustments */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
                 position: absolute;
-                top: 80px;
+                top: 70px;
                 left: 0;
                 width: 100%;
                 background: white;
@@ -141,15 +144,14 @@
             .nav-links.open { display: flex; }
             .hamburger { display: block; }
             .hero-content h1 { font-size: 2rem; }
+            .logo-text { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <div class="logo"> 
-            <img src="images/logo.jpg" alt="Stephen Safe Haven Foundation">
-        </div>
+        <div class="logo-text">Stephen Haven Foundation</div>
         
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
@@ -165,32 +167,32 @@
 
     <div class="slider-container">
         <div class="slides" id="slide-track">
-            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images/slide3');">
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('images/slide1.jpg');">
                 <div class="hero-content">
                     <h1>Restoring Hope</h1>
-                    <p>Stephen Safe Haven Foundation is committed to giving vulnerable children a safe place to grow, learn, and rediscover hope.</p>
+                    <p>Stephen Haven Foundation is committed to giving vulnerable children a safe place to grow, learn, and rediscover hope.</p>
                     <a href="about.html" class="read-more">Read More</a>
                 </div>
             </div>
-            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images/slide2');">
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('images/slide2.jpg');">
                 <div class="hero-content">
                     <h1>Protecting Every Child</h1>
                     <p>We believe every child deserves love, education, and protection from harm.</p>
                 </div>
             </div>
-            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images/slide1');">
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('images/slide3.jpg');">
                 <div class="hero-content">
                     <h1>Education & Empowerment</h1>
                     <p>Providing the tools for orphans and vulnerable children to build a brighter future in Arusha.</p>
                 </div>
             </div>
-            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images/slide4');">
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('images/slide4.jpg');">
                 <div class="hero-content">
                     <h1>A Community of Love</h1>
                     <p>Restoring dignity to every life we touch through shelter and spiritual nurturing.</p>
                 </div>
             </div>
-            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('https://images/slide5');">
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('images/slide5.jpg');">
                 <div class="hero-content">
                     <h1>Join Our Mission</h1>
                     <p>Together, we can create a Tanzania where every child lives free from fear.</p>
@@ -203,7 +205,7 @@
         <section class="about-section">
             <h2>Who We Are</h2>
             <p>
-                <strong>Stephen Safe Haven Foundation</strong> is a community-based organization 
+                <strong>Stephen Haven Foundation</strong> is a community-based organization 
                 dedicated to supporting orphans, vulnerable families, and children at risk.  
                 Through education, shelter, counseling, and spiritual nurturing,  
                 we work to build brighter futures and restore dignity to every life we touch.
@@ -220,17 +222,15 @@
             <a href="https://wa.me/255784383398" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
         <p class="footer-text">
-            © 2026 Stephen Safe Haven Foundation.<br> All Rights Reserved.
+            © 2026 Stephen Haven Foundation.<br> All Rights Reserved.
         </p>
     </footer>
 
     <script>
-        // Hamburger Menu Toggle
         function toggleMenu() {
             document.getElementById('navLinks').classList.toggle('open');
         }
 
-        // Automatic Slider Logic
         let currentSlide = 0;
         const totalSlides = 5;
         const track = document.getElementById('slide-track');
@@ -240,9 +240,11 @@
             track.style.transform = `translateX(-${currentSlide * 20}%)`;
         }
 
-        setInterval(moveSlide, 5000); // Changes slide every 5 seconds
+        setInterval(moveSlide, 5000); 
     </script>
 
 </body>
 </html>
 
+
+       

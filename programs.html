@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What We Do | Stephen Safe Haven Foundation</title>
+    <title>What We Do | Stephen Haven Foundation</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -17,12 +17,12 @@
             --text: #333;
         }
 
-        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; color: var(--text); background: var(--light-bg); }
+        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; color: var(--text); background: var(--light-bg); overflow-x: hidden; }
 
         /* --- Navigation --- */
-        nav {
+        .navbar {
             background: var(--white);
-            padding: 10px 5%;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -32,7 +32,13 @@
             z-index: 1000;
         }
 
-        .logo img { height: 50px; }
+        .logo-text { 
+            font-weight: 600; 
+            font-size: 1.4rem; 
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         .nav-links {
             display: flex;
@@ -46,50 +52,51 @@
             color: var(--primary);
             font-weight: 600;
             font-size: 0.9rem;
+            transition: 0.3s;
         }
+
+        .nav-links a:hover { color: var(--accent); }
 
         .hamburger { display: none; cursor: pointer; color: var(--primary); }
 
         /* --- Page Header --- */
         .page-header {
-            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), 
-                        url('https://images/slide7');
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), 
+                        url('images/slide7.jpg'); /* FIXED PATH */
             background-size: cover;
             background-position: center;
             color: white;
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
         }
 
-        .page-header h1 { font-size: 3rem; margin: 0; }
-        .page-header p { font-style: italic; color: var(--accent); font-size: 1.2rem; }
+        .page-header h1 { font-size: 3.5rem; margin: 0; }
+        .page-header p { font-style: italic; color: var(--accent); font-size: 1.2rem; margin-top: 10px; }
 
         /* --- Program Grid --- */
         .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
         
-        h2 { text-align: center; color: var(--primary); margin-bottom: 40px; position: relative; }
+        h2 { text-align: center; color: var(--primary); margin-bottom: 50px; position: relative; }
         h2::after { content: ''; width: 60px; height: 3px; background: var(--accent); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
 
         .program-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
+            gap: 30px;
         }
 
         .program-card {
             background: var(--white);
-            padding: 30px;
+            padding: 40px 30px;
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--accent);
+            border-top: 5px solid var(--accent);
             transition: 0.3s;
         }
 
         .program-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-
-        .program-card i { font-size: 2rem; color: var(--accent); margin-bottom: 15px; }
-
-        .program-card h3 { color: var(--primary); margin-top: 0; }
+        .program-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
+        .program-card h3 { color: var(--primary); margin-top: 0; font-size: 1.3rem; }
 
         /* --- Approach Section --- */
         .approach-section {
@@ -97,26 +104,33 @@
             color: white;
             padding: 60px 40px;
             border-radius: 15px;
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
-        .approach-list { list-style: none; padding: 0; }
-        .approach-list li { margin-bottom: 15px; display: flex; align-items: center; }
-        .approach-list li i { color: var(--accent); margin-right: 15px; }
+        .approach-section h2 { color: var(--white); text-align: left; }
+        .approach-section h2::after { left: 0; transform: none; background: var(--accent); }
+
+        .approach-list { list-style: none; padding: 0; margin-top: 30px; }
+        .approach-list li { margin-bottom: 20px; display: flex; align-items: center; font-size: 1.1rem; }
+        .approach-list li i { color: var(--accent); margin-right: 15px; font-size: 1.4rem; }
 
         /* --- Footer --- */
         .footer {
-            background: var(--white);
+            background: var(--primary);
+            color: white;
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             margin-top: 60px;
         }
 
+        .social-links { margin-bottom: 20px; }
         .social-links a {
-            color: var(--primary);
+            color: white;
             font-size: 1.5rem;
             margin: 0 15px;
+            transition: 0.3s;
         }
+        .social-links a:hover { color: var(--accent); }
 
         /* Mobile Adjustments */
         @media (max-width: 768px) {
@@ -130,19 +144,22 @@
                 flex-direction: column;
                 padding: 20px;
                 text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
             }
             .nav-links.open { display: flex; }
             .hamburger { display: block; }
+            .page-header h1 { font-size: 2.5rem; }
+            .logo-text { font-size: 1.1rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo"><img src="images/logo.jpg" alt="Logo"></div>
+    <nav class="navbar">
+        <div class="logo-text">Stephen Haven Foundation</div>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="about.html">About Us</a></li>
             <li><a href="programs.html">What We Do</a></li>
             <li><a href="contact.html">Contact Us</a></li>
         </ul>
@@ -208,9 +225,9 @@
             </ul>
         </section>
 
-        <section style="margin-top: 50px; text-align: center;">
-            <h2>Governance & Sustainability</h2>
-            <p>The Foundation is guided by a Board of Trustees including child protection specialists and educators. Our model includes donor partnerships and income projects like farming and eco-products to ensure long-term care for our children.</p>
+        <section style="margin-top: 60px; text-align: center;">
+            <h2 style="margin-bottom: 20px;">Governance & Sustainability</h2>
+            <p style="max-width: 800px; margin: auto; font-size: 1.1rem; color: #555;">The Foundation is guided by a Board of Trustees including child protection specialists and educators. Our model includes donor partnerships and income projects like farming and eco-products to ensure long-term care for our children.</p>
         </section>
     </div>
 
@@ -218,9 +235,10 @@
         <div class="social-links">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="https://wa.me/255784383398"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p>© 2026 Stephen Safe Haven Foundation. All Rights Reserved.</p>
+        <p>© 2026 Stephen Haven Foundation. All Rights Reserved.</p>
     </footer>
 
     <script>
