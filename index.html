@@ -184,17 +184,18 @@
         /* --- HERO BANNER --- */
         .hero-section {
             position: relative;
-            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            /* Utilizing precision workbench imagery from e197b82c69c5e924d277e6b84524a203.jpg */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('e197b82c69c5e924d277e6b84524a203.jpg') center/cover no-repeat;
             padding: 100px 20px 60px 20px;
             color: var(--text-light);
-            min-height: 520px;
+            min-height: 560px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
         }
 
         .hero-content {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto 0 0;
             width: 100%;
         }
@@ -210,8 +211,34 @@
         .hero-subtitle {
             font-size: 1.1rem;
             font-weight: 300;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* Services Slide Badges */
+        .slide-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .slide-tag {
+            background-color: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.25);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .slide-tag span {
+            color: var(--primary);
         }
 
         .btn-primary {
@@ -379,7 +406,7 @@
         }
 
         .promo-image {
-            background: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+            background: url('e197b82c69c5e924d277e6b84524a203.jpg') center/cover no-repeat;
             min-height: 250px;
         }
 
@@ -621,7 +648,15 @@
     <section class="hero-section">
         <div class="hero-content">
             <h1 class="hero-title">PETER & JOHN Phones Expert Repair</h1>
-            <p class="hero-subtitle">Fast, reliable, and premium mobile solutions for individual and bulk corporate needs.</p>
+            <p class="hero-subtitle">Fast, premium hardware solutions. From standard diagnostics to advanced circuitry restoration and micro-soldering solutions.</p>
+            
+            <!-- Dynamic Slide Tags showing the requested slide additions -->
+            <div class="slide-tags">
+                <div class="slide-tag"><span>💧</span> Water Damage Fix</div>
+                <div class="slide-tag"><span>🔊</span> Speaker Repair</div>
+                <div class="slide-tag"><span>🔘</span> Home Button Recovery</div>
+            </div>
+
             <a href="tel:254117747358" class="btn-primary">Call Expert Now</a>
             
             <div class="slider-dots">
@@ -678,21 +713,23 @@
                 <ul>
                     <li>Charging port fix & replacement</li>
                     <li>Battery replacement</li>
-                    <li>Speaker cleaning and repair</li>
+                    <li>Speaker cleaning, repair & problems resolution</li>
+                    <li>Home button repair and alignment</li>
                 </ul>
             </div>
             <div class="service-card">
-                <h3><span>💻</span> Software Services</h3>
+                <h3><span>💧</span> Advanced Liquids Lab</h3>
                 <ul>
-                    <li>Phone flashing & clean reinstalling</li>
-                    <li>Bug, system error, & slow fixes</li>
+                    <li>Complete water damage restoration</li>
+                    <li>Ultrasonic motherboard cleaning</li>
+                    <li>Corrosion treatment and module salvage</li>
                 </ul>
             </div>
             <div class="service-card">
-                <h3><span>🔌</span> Accessories Supply</h3>
+                <h3><span>🔌</span> Accessories & Systems</h3>
                 <ul>
-                    <li>Premium Chargers & Protectors</li>
-                    <li>Earphones & durable Phone covers</li>
+                    <li>Phone flashing & clean software reinstalling</li>
+                    <li>Premium Chargers, Protectors & Covers</li>
                 </ul>
             </div>
         </div>
