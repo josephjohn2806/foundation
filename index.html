@@ -181,7 +181,7 @@
             display: block;
         }
 
-        /* --- HERO BANNER SLIDER --- */
+        /* --- HERO BANNER --- */
         .hero-section {
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
@@ -195,7 +195,8 @@
 
         .hero-content {
             max-width: 600px;
-            margin: 0 auto w 100%;
+            margin: 0 auto 0 0;
+            width: 100%;
         }
 
         .hero-title {
@@ -266,15 +267,9 @@
             max-width: 1000px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             text-align: center;
-        }
-
-        @media (max-width: 600px) {
-            .hub-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         .hub-item {
@@ -460,60 +455,7 @@
             font-size: 1rem;
         }
 
-        /* --- ACCORDION SYSTEM FOR DETAILED PROPOSAL --- */
-        .accordion-wrapper {
-            margin-bottom: 40px;
-        }
-
-        .accordion-item {
-            background-color: var(--text-light);
-            border: 1px solid var(--border);
-            margin-bottom: 10px;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-
-        .accordion-header {
-            width: 100%;
-            background: none;
-            border: none;
-            padding: 20px;
-            text-align: left;
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .accordion-header::after {
-            content: '▼';
-            font-size: 0.8rem;
-            color: var(--gray);
-            transition: transform 0.2s;
-        }
-
-        .accordion-item.active .accordion-header::after {
-            transform: rotate(180deg);
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
-            background-color: #FAFAFA;
-        }
-
-        .accordion-body {
-            padding: 20px;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #333333;
-        }
-
-        /* --- FOOTER REGION WITH NAV GROUPS --- */
+        /* --- FOOTER --- */
         footer {
             background-color: var(--dark);
             color: var(--text-light);
@@ -653,8 +595,6 @@
             <li><a href="#about">About Us</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#objectives">Objectives</a></li>
-            <li><a href="#partnership">LDS Partnership</a></li>
-            <li><a href="#proposal-doc">Full Proposal Details</a></li>
         </ul>
     </nav>
 
@@ -677,11 +617,11 @@
         </div>
     </header>
 
-    <!-- HERO SECTION SLIDER CAROUSEL -->
+    <!-- HERO SECTION -->
     <section class="hero-section">
         <div class="hero-content">
             <h1 class="hero-title">PETER & JOHN Phones Expert Repair</h1>
-            <p class="hero-subtitle">Fast, reliable, and premium mobile solutions for enterprise fleets and local organizations.</p>
+            <p class="hero-subtitle">Fast, reliable, and premium mobile solutions for individual and bulk corporate needs.</p>
             <a href="tel:254117747358" class="btn-primary">Call Expert Now</a>
             
             <div class="slider-dots">
@@ -696,17 +636,13 @@
     <!-- QUICK HUB NAVIGATION LINKS -->
     <div class="quick-hub">
         <div class="hub-grid">
-            <div class="hub-item">
+            <div class="hub-item" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'});">
                 <div class="hub-icon">📱</div>
                 <div class="hub-label">About Us</div>
             </div>
-            <div class="hub-item">
+            <div class="hub-item" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'});">
                 <div class="hub-icon">⚙️</div>
                 <div class="hub-label">Services</div>
-            </div>
-            <div class="hub-item">
-                <div class="hub-icon">💼</div>
-                <div class="hub-label">Partnership</div>
             </div>
         </div>
     </div>
@@ -714,7 +650,7 @@
     <!-- MAIN BODY SECTIONS -->
     <main class="section-container">
         
-        <!-- COMPONENT DISPLAY: GROWTH CHANNELS / MOTIVATION -->
+        <!-- ABOUT US CARD -->
         <div class="promo-card" id="about">
             <div class="promo-text">
                 <div class="promo-tag">
@@ -722,10 +658,7 @@
                     Corporate Vision
                 </div>
                 <h2 class="promo-heading">Restoring Device Integrity Quickly</h2>
-                <p class="promo-desc">PETER and JOHN Phones Expert Repair is dedicated to delivering high-quality mobile repair services by skilled technicians. Our primary focus is to minimize downtime, extend operations lifecycles, and guarantee satisfaction.</p>
-                <div>
-                    <button class="btn-primary" style="padding: 12px 30px; font-size: 0.85rem;" onclick="document.getElementById('proposal-doc').scrollIntoView({behavior: 'smooth'});">View Proposal Documents</button>
-                </div>
+                <p class="promo-desc">PETER and JOHN Phones Expert Repair is dedicated to delivering high-quality mobile repair services by skilled technicians. Our primary focus is to minimize downtime, extend operational lifecycles, and guarantee satisfaction through excellent service.</p>
             </div>
             <div class="promo-image"></div>
         </div>
@@ -764,65 +697,16 @@
             </div>
         </div>
 
-        <!-- CORE STRATEGY ADVANTAGES -->
+        <!-- CORE STRATEGY ADVANTAGES / OBJECTIVES -->
         <div class="value-box" id="objectives">
-            <h2 style="font-weight: 700; margin-bottom: 10px;">Strategic Operational Matrix</h2>
-            <p style="color: var(--gray); font-size: 0.95rem;">Why partner ecosystems scale securely with our mechanical support infrastructure:</p>
+            <h2 style="font-weight: 700; margin-bottom: 10px;">Our Main Objectives</h2>
+            <p style="color: var(--gray); font-size: 0.95rem; margin-bottom: 15px;">Why clients choose our custom repair ecosystem:</p>
             <div class="value-grid">
-                <div class="value-item">✅ Experienced & skilled technicians</div>
-                <div class="value-item">✅ Fast turnaround execution window</div>
-                <div class="value-item">✅ Highly competitive structured pricing</div>
-                <div class="value-item">✅ High-quality certified components</div>
+                <div class="value-item">✅ Provide fast and reliable phone repair services</div>
+                <div class="value-item">✅ Substantially reduce downtime for critical devices</div>
+                <div class="value-item">✅ Offer highly affordable and quality solutions</div>
+                <div class="value-item">✅ Ensure customer satisfaction and build long-term relationships</div>
             </div>
-        </div>
-
-        <!-- EXECUTIVE AGREEMENT DOCUMENTATION SYSTEM -->
-        <h2 class="section-title" id="proposal-doc">Corporate Framework Proposal</h2>
-        <div class="accordion-wrapper">
-            
-            <div class="accordion-item">
-                <button class="accordion-header">1. Executive Overview & Intro</button>
-                <div class="accordion-content">
-                    <div class="accordion-body">
-                        PETER and JOHN Phones Expert Repair is a professional mobile phone repair and accessories service company committed to providing fast, reliable, and affordable mobile solutions. We specialize in repairing a wide variety of smartphone issues and supplying quality accessories to meet customer needs. This proposal outlines our services and how we can support LDS Company with expert phone repair and maintenance services.
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">2. Explicit Corporate Objectives</button>
-                <div class="accordion-content">
-                    <div class="accordion-body">
-                        • To provide fast and reliable phone repair services<br>
-                        • To reduce operational downtime for essential communication devices<br>
-                        • To offer affordable, verified, and high-quality hardware solutions<br>
-                        • To ensure consistent customer satisfaction and long-term relationships
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item" id="partnership">
-                <button class="accordion-header">3. Target Partnership Infrastructure for LDS Company</button>
-                <div class="accordion-content">
-                    <div class="accordion-body">
-                        We explicitly aim to create a long-term enterprise partnership framework with LDS Company to provide specialized logistics support:
-                        <br><br>
-                        • Provide dedicated on-demand repair services for organizational enterprise devices.<br>
-                        • Supply authentic, high-grade functional mobile phone accessories in wholesale bulk.<br>
-                        • Offer personalized hardware maintenance and diagnostic assistance support arrays for active employee smartphones.
-                    </div>
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <button class="accordion-header">4. Streamlined Service Delivery Verification</button>
-                <div class="accordion-content">
-                    <div class="accordion-body">
-                        Our workflow ensures immediate compliance protocols: Quick diagnostic tracking cycles of complex device faults, transparent itemized billing operations with absolute repair clarity, professional mechanical handling matrices, and structured, timely execution completions.
-                    </div>
-                </div>
-            </div>
-
         </div>
 
     </main>
@@ -838,7 +722,7 @@
                     <ul class="footer-links">
                         <li><a href="#about">About Our Group</a></li>
                         <li><a href="#services">Services Portfolio</a></li>
-                        <li><a href="#objectives">Strategic Vision</a></li>
+                        <li><a href="#objectives">Our Objectives</a></li>
                     </ul>
                 </div>
             </div>
@@ -849,7 +733,6 @@
                     <ul class="footer-links">
                         <li><a href="tel:254117747358">Phone: +254 117 747 358</a></li>
                         <li><a href="#">Location: Nairobi, Kenya</a></li>
-                        <li><a href="#">Partner: LDS Company</a></li>
                     </ul>
                 </div>
             </div>
@@ -868,7 +751,7 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE MENU & ACCORDION ANIMATION SCRIPT -->
+    <!-- INTERACTIVE MENU ANIMATION SCRIPT -->
     <script>
         // DOM Handles
         const hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -891,27 +774,6 @@
             link.addEventListener('click', () => {
                 sidebarMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
-            });
-        });
-
-        // Document Accordion Engine
-        const accordions = document.querySelectorAll('.accordion-item');
-        accordions.forEach(item => {
-            const header = item.querySelector('.accordion-header');
-            header.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                
-                // Reset all other panels
-                accordions.forEach(acc => {
-                    acc.classList.remove('active');
-                    acc.querySelector('.accordion-content').style.maxHeight = null;
-                });
-
-                if (!isActive) {
-                    item.classList.add('active');
-                    const content = item.querySelector('.accordion-content');
-                    content.style.maxHeight = content.scrollHeight + "px";
-                }
             });
         });
 
