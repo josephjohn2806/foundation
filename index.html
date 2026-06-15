@@ -31,7 +31,7 @@
             background-color: var(--light);
             color: var(--text-dark);
             overflow-x: hidden;
-            perspective: 1200px; /* Establishes global 3D render workspace context */
+            perspective: 1200px;
         }
 
         /* --- HEADER --- */
@@ -84,7 +84,6 @@
             justify-content: center;
         }
 
-        /* Hamburger Menu Icon */
         .hamburger {
             cursor: pointer;
             width: 30px;
@@ -170,7 +169,6 @@
             color: var(--gray);
         }
 
-        /* Sidebar Backdrop Overlay */
         .overlay {
             position: fixed;
             top: 0;
@@ -189,7 +187,8 @@
         /* --- HERO BANNER --- */
         .hero-section {
             position: relative;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('e197b82c69c5e924d277e6b84524a203.jpg') center/cover no-repeat;
+            /* Updated to use flat images folder path */
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('images/hero-main.jpg') center/cover no-repeat;
             padding: 100px 20px 60px 20px;
             color: var(--text-light);
             min-height: 560px;
@@ -223,7 +222,6 @@
             transition: opacity 0.3s ease;
         }
 
-        /* Services Slide Badges */
         .slide-tags {
             display: flex;
             flex-wrap: wrap;
@@ -272,7 +270,6 @@
             box-shadow: 0 12px 28px rgba(255, 204, 0, 0.5);
         }
 
-        /* Slider Pagination Dots */
         .slider-dots {
             display: flex;
             gap: 8px;
@@ -338,7 +335,7 @@
             font-size: 1.6rem;
             border: 1px solid var(--border);
             transition: transform 0.3s ease, background-color 0.3s;
-            transform: translateZ(25px); /* Forces pop-out structural separation */
+            transform: translateZ(25px);
         }
         
         .hub-item:hover .hub-icon {
@@ -378,7 +375,6 @@
             background-color: var(--primary);
         }
 
-        /* Card Feature Layout */
         .promo-card {
             background-color: #0F3A5F;
             color: var(--text-light);
@@ -438,7 +434,8 @@
         }
 
         .promo-image {
-            background: url('e197b82c69c5e924d277e6b84524a203.jpg') center/cover no-repeat;
+            /* Updated to use flat images folder path */
+            background: url('images/about-vision.jpg') center/cover no-repeat;
             min-height: 250px;
         }
 
@@ -542,7 +539,7 @@
             height: 75px;
             width: auto;
             object-fit: contain;
-            filter: brightness(0) invert(1); /* Adapts light backgrounds transparently onto dark panels */
+            filter: brightness(0) invert(1);
             opacity: 0.95;
         }
 
@@ -598,7 +595,6 @@
             color: var(--primary);
         }
 
-        /* Modern 3D Dynamic Social Icons */
         .social-row {
             display: flex;
             gap: 18px;
@@ -624,7 +620,6 @@
             fill: currentColor;
         }
 
-        /* 3D Elevation Pop on Social Triggers */
         .social-icon-link:hover {
             transform: translateY(-6px) scale(1.1) rotate(5deg);
             background-color: var(--primary);
@@ -689,7 +684,7 @@
     <header>
         <div class="nav-container">
             <div class="logo-box">
-                <img src="Johnpeter.png" alt="JOHN & PETER Logo">
+                <img src="images/Johnpeter.png" alt="JOHN & PETER Logo">
             </div>
             <div class="nav-actions">
                 <div class="search-icon">
@@ -717,8 +712,7 @@
 
             <a href="tel:254117747358" class="btn-primary">Call Expert Now</a>
             
-            <div class="slider-dots" id="dotsContainer">
-                </div>
+            <div class="slider-dots" id="dotsContainer"></div>
         </div>
     </section>
 
@@ -799,7 +793,7 @@
 
     <footer>
         <div class="footer-logo-container">
-            <img class="footer-logo-img" src="Johnpeter.png" alt="JOHN & PETER Logo">
+            <img class="footer-logo-img" src="images/Johnpeter.png" alt="JOHN & PETER Logo">
         </div>
         
         <div class="footer-accordion-container">
@@ -867,26 +861,27 @@
         });
 
         // --- WORKING BANNER SLIDESHOW SYSTEM ---
+        // Slide image paths updated to live directly under single images/ directory
         const slideData = [
             {
                 title: "PETER & JOHN Phones Expert Repair",
                 subtitle: "Fast, premium hardware solutions. From standard diagnostics to advanced circuitry restoration and micro-soldering solutions.",
-                image: "e197b82c69c5e924d277e6b84524a203.jpg"
+                image: "images/hero-main.jpg"
             },
             {
                 title: "Advanced Water Damage Recovery",
                 subtitle: "Dropped your phone in water? Our liquid laboratory handles deep motherboard extraction, chemical cleaning, and data recovery instantly.",
-                image: "e197b82c69c5e924d277e6b84524a203.jpg"
+                image: "images/slide-water.jpg"
             },
             {
                 title: "Crystal Clear Sound & Audio Fixes",
                 subtitle: "Fix distorted audio, low speaker volumes, and microphone issues using precision-engineered parts matching factory standards.",
-                image: "e197b82c69c5e924d277e6b84524a203.jpg"
+                image: "images/slide-audio.jpg"
             },
             {
                 title: "Responsive Controls & Buttons",
                 subtitle: "We resolve stuck home buttons, broken power switches, and volume buttons to return complete command to your hands.",
-                image: "e197b82c69c5e924d277e6b84524a203.jpg"
+                image: "images/slide-buttons.jpg"
             }
         ];
 
@@ -896,7 +891,6 @@
         const slideSubtitle = document.getElementById('slideSubtitle');
         const dotsContainer = document.getElementById('dotsContainer');
 
-        // Create functional indicator navigation dots
         slideData.forEach((_, index) => {
             const dot = document.createElement('span');
             dot.classList.add('dot');
@@ -968,7 +962,6 @@
         });
 
         // --- ENHANCED HIGH-PERFORMANCE 3D TILT ENGINE ---
-        // Dynamically calculates real-time cursor perspective tracking angles
         const components3D = document.querySelectorAll('.service-card, .hub-item');
         
         components3D.forEach(card => {
@@ -977,11 +970,9 @@
                 const cardWidth = rect.width;
                 const cardHeight = rect.height;
                 
-                // Calculates look-at coordinate percentage deviations (-0.5 to 0.5)
                 const mouseX = e.clientX - rect.left - (cardWidth / 2);
                 const mouseY = e.clientY - rect.top - (cardHeight / 2);
                 
-                // Maps offset angles with responsive limits
                 const angleX = -(mouseY / (cardHeight / 2)) * 10;
                 const angleY = (mouseX / (cardWidth / 2)) * 10;
                 
@@ -995,5 +986,6 @@
     </script>
 </body>
 </html>
+
 
 
