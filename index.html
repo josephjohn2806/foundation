@@ -184,7 +184,6 @@
         /* --- HERO BANNER --- */
         .hero-section {
             position: relative;
-            /* Utilizing precision workbench imagery from e197b82c69c5e924d277e6b84524a203.jpg */
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('e197b82c69c5e924d277e6b84524a203.jpg') center/cover no-repeat;
             padding: 100px 20px 60px 20px;
             color: var(--text-light);
@@ -192,6 +191,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            transition: background 0.5s ease-in-out;
         }
 
         .hero-content {
@@ -206,6 +206,7 @@
             line-height: 1.15;
             margin-bottom: 15px;
             text-transform: uppercase;
+            transition: opacity 0.3s ease;
         }
 
         .hero-subtitle {
@@ -214,6 +215,7 @@
             margin-bottom: 20px;
             opacity: 0.9;
             line-height: 1.5;
+            transition: opacity 0.3s ease;
         }
 
         /* Services Slide Badges */
@@ -276,6 +278,7 @@
             border-radius: 50%;
             background-color: rgba(255,255,255,0.4);
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .dot.active {
@@ -644,13 +647,13 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero-section">
+    <!-- HERO SECTION SLIDER -->
+    <section class="hero-section" id="heroBanner">
         <div class="hero-content">
-            <h1 class="hero-title">PETER & JOHN Phones Expert Repair</h1>
-            <p class="hero-subtitle">Fast, premium hardware solutions. From standard diagnostics to advanced circuitry restoration and micro-soldering solutions.</p>
+            <h1 class="hero-title" id="slideTitle">PETER & JOHN Phones Expert Repair</h1>
+            <p class="hero-subtitle" id="slideSubtitle">Fast, premium hardware solutions. From standard diagnostics to advanced circuitry restoration and micro-soldering solutions.</p>
             
-            <!-- Dynamic Slide Tags showing the requested slide additions -->
+            <!-- Dynamic Slide Tags showing requested additions -->
             <div class="slide-tags">
                 <div class="slide-tag"><span>💧</span> Water Damage Fix</div>
                 <div class="slide-tag"><span>🔊</span> Speaker Repair</div>
@@ -659,11 +662,8 @@
 
             <a href="tel:254117747358" class="btn-primary">Call Expert Now</a>
             
-            <div class="slider-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+            <div class="slider-dots" id="dotsContainer">
+                <!-- Dots injected via JavaScript dynamically -->
             </div>
         </div>
     </section>
@@ -788,15 +788,14 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE MENU ANIMATION SCRIPT -->
+    <!-- INTERACTIVE MENU ANIMATION & FIXED SLIDER SCRIPT -->
     <script>
-        // DOM Handles
+        // --- SIDEBAR NAVIGATION LOGIC ---
         const hamburgerBtn = document.getElementById('hamburgerBtn');
         const closeMenu = document.getElementById('closeMenu');
         const sidebarMenu = document.getElementById('sidebarMenu');
         const menuOverlay = document.getElementById('menuOverlay');
 
-        // Drawer Event Controls
         function toggleSidebar() {
             sidebarMenu.classList.toggle('active');
             menuOverlay.classList.toggle('active');
@@ -806,7 +805,6 @@
         closeMenu.addEventListener('click', toggleSidebar);
         menuOverlay.addEventListener('click', toggleSidebar);
 
-        // Close sidebar menu smoothly when links are selected
         document.querySelectorAll('.sidebar-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 sidebarMenu.classList.remove('active');
@@ -814,7 +812,87 @@
             });
         });
 
-        // Responsive Footer Accordions for Mobile viewports
+        // --- FULLY WORKING BANNER SLIDESHOW SYSTEM ---
+        const slideData = [
+            {
+                title: "PETER & JOHN Phones Expert Repair",
+                subtitle: "Fast, premium hardware solutions. From standard diagnostics to advanced circuitry restoration and micro-soldering solutions.",
+                image: "e197b82c69c5e924d277e6b84524a203.jpg"
+            },
+            {
+                title: "Advanced Water Damage Recovery",
+                subtitle: "Dropped your phone in water? Our liquid laboratory handles deep motherboard extraction, chemical cleaning, and data recovery instantly.",
+                image: "e197b82c69c5e924d277e6b84524a203.jpg"
+            },
+            {
+                title: "Crystal Clear Sound & Audio Fixes",
+                subtitle: "Fix distorted audio, low speaker volumes, and microphone issues using precision-engineered parts matching factory standards.",
+                image: "e197b82c69c5e924d277e6b84524a203.jpg"
+            },
+            {
+                title: "Responsive Controls & Buttons",
+                subtitle: "We resolve stuck home buttons, broken power switches, and volume buttons to return complete command to your hands.",
+                image: "e197b82c69c5e924d277e6b84524a203.jpg"
+            }
+        ];
+
+        let currentSlide = 0;
+        const heroBanner = document.getElementById('heroBanner');
+        const slideTitle = document.getElementById('slideTitle');
+        const slideSubtitle = document.getElementById('slideSubtitle');
+        const dotsContainer = document.getElementById('dotsContainer');
+
+        // Create functional indicator navigation dots
+        slideData.forEach((_, index) => {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
+        function goToSlide(index) {
+            currentSlide = index;
+            
+            // Subtle transition fade effect smoothly handling texts
+            slideTitle.style.opacity = 0;
+            slideSubtitle.style.opacity = 0;
+
+            setTimeout(() => {
+                slideTitle.textContent = slideData[currentSlide].title;
+                slideSubtitle.textContent = slideData[currentSlide].subtitle;
+                heroBanner.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('${slideData[currentSlide].image}')`;
+                
+                slideTitle.style.opacity = 1;
+                slideSubtitle.style.opacity = 1;
+            }, 250);
+
+            // Active dot management updates
+            dots.forEach(d => d.classList.remove('active'));
+            dots[currentSlide].classList.add('active');
+        }
+
+        // Automatic engine rotation loop every 5 seconds
+        let slideInterval = setInterval(() => {
+            let nextSlide = (currentSlide + 1) % slideData.length;
+            goToSlide(nextSlide);
+        }, 5000);
+
+        // Reset auto timer when a user interacts via manual click
+        function resetSliderTimer() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(() => {
+                let nextSlide = (currentSlide + 1) % slideData.length;
+                goToSlide(nextSlide);
+            }, 5000);
+        }
+
+        dots.forEach(dot => dot.addEventListener('click', resetSliderTimer));
+
+
+        // --- MOBILE FOOTER INTERACTIVE ACCORDIONS ---
         const footerPanels = document.querySelectorAll('.footer-panel');
         footerPanels.forEach(panel => {
             const header = panel.querySelector('.footer-panel-header');
@@ -827,7 +905,6 @@
             });
         });
 
-        // Dynamic viewport resize handling for footer items
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 768) {
                 document.querySelectorAll('.footer-panel-content').forEach(content => {
