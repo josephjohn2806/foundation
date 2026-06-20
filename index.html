@@ -169,11 +169,21 @@
         .hero-main-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 400; margin-bottom: 20px; }
         .hero-description { font-size: 0.92rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 25px; }
         
+        /* Special Animated Gold Action Button Links */
+        .btn-gold-link {
+            display: inline-block;
+            text-decoration: none;
+        }
         .btn-gold-action {
-            background-color: var(--brand-gold); color: #000; border: none; padding: 12px 28px;
+            background-color: var(--brand-gold); color: #000; border: none; padding: 14px 32px;
             font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px; border-radius: 25px; cursor: pointer; text-transform: uppercase;
             box-shadow: 0 4px 0 #bfa218;
-            transition: transform 0.1s, box-shadow 0.1s;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.1s, background-color 0.3s;
+        }
+        .btn-gold-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(241, 184, 39, 0.3);
+            background-color: #ffd053;
         }
         .btn-gold-action:active {
             transform: translateY(4px);
@@ -378,7 +388,10 @@
             <p class="hero-description">
                 Since inception, we've had the privilege of transforming Kenya's finest residences, corporate environments, and structural spaces into spotless ecosystems.
             </p>
-            <button class="btn-gold-action">Meet Our Team</button>
+            <!-- Connected & styled link wrapper -->
+            <a href="get-in-touch.html" class="btn-gold-link">
+                <button class="btn-gold-action">Meet Our Team</button>
+            </a>
         </div>
     </section>
 
@@ -449,13 +462,13 @@
             </div>
         </div>
 
-        <!-- Media Control Bar (Matches Image Format) -->
+        <!-- Media Control Bar -->
         <div class="video-control-bar">
             <i class="fa-solid fa-pause" id="playPauseIcon" onclick="togglePlayPause()"></i>
             <span id="videoTimeStatus">00:00 / 01:20</span>
         </div>
 
-        <!-- Thumbnail Preview Strip (Directly Matches 1781979385241.jpeg Tray) -->
+        <!-- Thumbnail Preview Strip -->
         <div class="thumbnail-preview-strip">
             <div class="thumb-box active-thumb" style="background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=150');" onclick="jumpToSlide(0)"></div>
             <div class="thumb-box" style="background-image: url('https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=150');" onclick="jumpToSlide(1)"></div>
@@ -598,6 +611,7 @@
     </script>
 </body>
 </html>
+
 
 
 
