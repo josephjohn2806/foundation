@@ -37,12 +37,39 @@
             min-height: 100vh;
         }
 
+        /* ------------------ TOP UTILITY CONTACT BAR ------------------ */
+        .top-info-bar {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 10px 24px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .top-info-bar a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s;
+        }
+        .top-info-bar a:hover {
+            color: var(--brand-gold);
+        }
+        .top-info-divider {
+            color: rgba(255, 255, 255, 0.15);
+        }
+
         /* ------------------ NAVIGATION HEADER ------------------ */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 24px;
+            padding: 24px 24px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
             z-index: 200;
@@ -220,6 +247,13 @@
 </head>
 <body>
 
+    <!-- Verbatim layout replication matching 1000196470.jpg -->
+    <div class="top-info-bar">
+        <a href="tel:+254117747358"><i class="fa-solid fa-phone"></i> +254 117 747 358</a>
+        <span class="top-info-divider">|</span>
+        <a href="mailto:info@jbcleaning.co.ke"><i class="fa-solid fa-envelope"></i> info@jbcleaning.co.ke</a>
+    </div>
+
     <nav class="navbar">
         <a href="index.html" class="brand-container">
             <i class="fa-solid fa-broom-ball brand-logo-svg"></i>
@@ -337,6 +371,7 @@
     </script>
 </body>
 </html>
+
 
 
 
