@@ -95,8 +95,9 @@
             border-radius: 8px;
             overflow: hidden;
             transform-style: preserve-3d;
-            transition: transform 0.15s ease-out, border-color 0.4s;
+            transition: transform 0.2s ease-out, border-color 0.4s;
             position: relative;
+            will-change: transform;
         }
         
         .service-3d-card:hover {
@@ -108,7 +109,7 @@
             height: 220px;
             position: relative;
             overflow: hidden;
-            transform: translateZ(20px); /* Lifts image off the base layer */
+            transform: translateZ(20px);
         }
         .card-graphic-frame img {
             width: 100%;
@@ -128,7 +129,7 @@
         /* Typography & Body Specs Layer */
         .card-body-specs {
             padding: 25px 20px;
-            transform: translateZ(40px); /* Lifts content layer higher for explicit 3D split parallax */
+            transform: translateZ(40px);
         }
         
         .service-icon-marker {
@@ -193,7 +194,7 @@
     <header class="services-intro-section">
         <p class="services-tag">Our Expertise</p>
         <h1 class="services-title">Exceptional Standards</h1>
-        <p class="services-subtitle">Move your pointer or swipe over the cards below to see our structural care focus items shift in immersive 3D space.</p>
+        <p class="services-subtitle">Interact with the cards below to see our premium care focus items move in immersive 3D space.</p>
     </header>
 
     <!-- Responsive Interactive 3D Service Grid Container -->
@@ -265,33 +266,46 @@
 
     </main>
 
-    <!-- 3D Parallax Tracking Component Engine -->
+    <!-- Hybrid Mouse & Mobile Touch 3D Tracking Component Engine -->
     <script>
         const cards = document.querySelectorAll('.service-3d-card');
 
+        function handleMove(e, card) {
+            const rect = card.getBoundingClientRect();
+            
+            // Handle both desktop pointer coordinates and mobile multi-touch targets
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+
+            const cardWidth = rect.width;
+            const cardHeight = rect.height;
+
+            // Constrain tilt rotation variables safely between -12 and 12 deg
+            const rotateX = ((y / cardHeight) - 0.5) * -16;
+            const rotateY = ((x / cardWidth) - 0.5) * 16;
+
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        }
+
+        function handleReset(card) {
+            card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        }
+
         cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; // x coordinate inside the element
-                const y = e.clientY - rect.top;  // y coordinate inside the element
+            // Desktop Mouse Event Support
+            card.addEventListener('mousemove', (e) => handleMove(e, card));
+            card.addEventListener('mouseleave', () => handleReset(card));
 
-                const cardWidth = rect.width;
-                const cardHeight = rect.height;
-
-                // Calculate tilt angle rotation factors (-10deg to 10deg bounds)
-                const rotateX = ((y / cardHeight) - 0.5) * -20;
-                const rotateY = ((x / cardWidth) - 0.5) * 20;
-
-                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
-
-            card.addEventListener('mouseleave', () => {
-                // Reset card smoothly back to zero resting plane positioning
-                card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            });
+            // Mobile Touch Screen Support (Uses passive listener settings so page scroll doesn't lag)
+            card.addEventListener('touchmove', (e) => handleMove(e, card), { passive: true });
+            card.addEventListener('touchend', () => handleReset(card));
         });
     </script>
 </body>
 </html>
+
 
 
