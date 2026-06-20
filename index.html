@@ -82,7 +82,6 @@
             transform-style: preserve-3d;
         }
         
-        /* Hamburger Active Animations */
         .hamburger-menu.active {
             transform: rotateY(180deg);
         }
@@ -205,34 +204,106 @@
         .process-card h4 { font-size: 1.1rem; text-transform: uppercase; margin-bottom: 10px; font-weight: 500; }
         .process-card p { font-size: 0.9rem; color: #666; line-height: 1.5; }
 
-        /* ------------------ SHOWCASE EXPANDED SLIDER IMAGES ------------------ */
-        .destinations-section { padding: 60px 24px; text-align: center; background: var(--bg-dark); perspective: var(--perspective); }
+        /* ------------------ WORKING DYNAMIC SLIDER LAYOUT ------------------ */
+        .destinations-section { padding: 60px 24px; text-align: center; background: var(--bg-dark); perspective: var(--perspective); position: relative; }
         
+        .slider-viewport-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 100%;
+        }
+
         .destination-card {
-            position: relative; height: 380px; border-radius: 6px; overflow: hidden; margin-bottom: 25px;
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 20px;
-            background-size: cover; background-position: center;
+            position: relative; 
+            height: 380px; 
+            border-radius: 6px; 
+            overflow: hidden; 
+            flex: 0 0 100%; /* Single card visible at a time */
+            display: flex; 
+            flex-direction: column; 
+            justify-content: flex-end; 
+            padding: 30px 20px;
+            background-size: cover; 
+            background-position: center;
             transform-style: preserve-3d;
-            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: transform 0.5s ease;
+            text-align: left;
         }
         .destination-card:hover {
-            transform: scale3d(1.02, 1.02, 1.02) rotateY(-4deg);
+            transform: scale3d(0.98, 0.98, 0.98) rotateY(-3deg);
         }
         .dest-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.85) 100%); }
         .dest-card-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; position: relative; z-index: 5; margin-bottom: 8px; transform: translateZ(30px); text-shadow: 0 2px 4px rgba(0,0,0,0.6); }
         .dest-card-desc { position: relative; z-index: 5; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px; transform: translateZ(25px); }
         
         .btn-outline-explore {
-            position: relative; z-index: 5; align-self: center; background: transparent; border: 1px solid #fff;
+            position: relative; z-index: 5; align-self: flex-start; background: transparent; border: 1px solid #fff;
             color: #fff; padding: 10px 30px; border-radius: 20px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
             transform: translateZ(20px);
             transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
         .btn-outline-explore:hover {
             background-color: var(--brand-gold);
             border-color: var(--brand-gold);
             color: var(--bg-dark);
             transform: translateZ(40px);
+        }
+
+        /* Slider Control Navigation Elements */
+        .slider-arrow {
+            position: absolute;
+            top: 55%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+        .slider-arrow:hover {
+            background: var(--brand-gold);
+            color: #000;
+            border-color: var(--brand-gold);
+        }
+        .arrow-left { left: 5px; }
+        .arrow-right { right: 5px; }
+
+        /* Slider Dots Indicators */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .dot.active {
+            background: var(--brand-gold);
+            width: 20px;
+            border-radius: 4px;
         }
 
         /* ------------------ DROPDOWN ACCORDION FOOTER ------------------ */
@@ -290,7 +361,6 @@
                 <span class="brand-subtitle">Premium Care</span>
             </div>
         </div>
-        <!-- 3D Structural Hamburger Toggle Button -->
         <div class="hamburger-menu" id="hamburgerToggle" onclick="toggleMenu()">
             <div class="hamburger-line line-1"></div>
             <div class="hamburger-line line-2"></div>
@@ -349,36 +419,54 @@
         <p class="section-label">Our Service Focus</p>
         <h2 class="section-headline">Deep Cleaning Solutions</h2>
 
-        <!-- Slide Asset Unit 1: Toilets & Restrooms -->
-        <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600');">
-            <div class="dest-overlay"></div>
-            <h3 class="dest-card-title">Toilet & Restroom Deep Clean</h3>
-            <p class="dest-card-desc">Complete chemical descaling, stain extractions, and hospital-grade sanitization floors.</p>
-            <button class="btn-outline-explore">Book Now</button>
+        <!-- Interactive Slide Buttons -->
+        <div class="slider-arrow arrow-left" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></div>
+        <div class="slider-arrow arrow-right" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></div>
+
+        <div class="slider-viewport-container">
+            <div class="slider-track" id="sliderTrack">
+                
+                <!-- Slide Asset Unit 1: Toilets (WhatsApp Routing) -->
+                <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600');">
+                    <div class="dest-overlay"></div>
+                    <h3 class="dest-card-title">Toilet & Restroom Deep Clean</h3>
+                    <p class="dest-card-desc">Complete chemical descaling, stain extractions, and hospital-grade sanitization floors.</p>
+                    <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I%20would%20like%20to%20book%20a%20Toilet%20and%20Restroom%20Deep%20Clean%20service." target="_blank" class="btn-outline-explore">Book via WhatsApp</a>
+                </div>
+
+                <!-- Slide Asset Unit 2: Sofas (Email Routing) -->
+                <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=600');">
+                    <div class="dest-overlay"></div>
+                    <h3 class="dest-card-title">Luxury Sofa Detailing</h3>
+                    <p class="dest-card-desc">Premium extraction machines targeting hidden dust mites, deep spills, and fabric restoration.</p>
+                    <a href="mailto:info@jbcleaning.co.ke?subject=Booking%20Inquiry%3A%20Luxury%20Sofa%20Detailing&body=Hello%20JB%20Cleaning%20Team%2C%0A%0AI%20would%20like%20to%20request%20a%20booking%20for%20your%20Luxury%20Sofa%20Detailing%20service.%20Kindly%20let%20me%20know%20your%20availability.%0A%0AThank%20you%21" class="btn-outline-explore">Book via Email</a>
+                </div>
+
+                <!-- Slide Asset Unit 3: Carpet Extraction (WhatsApp Routing) -->
+                <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=600');">
+                    <div class="dest-overlay"></div>
+                    <h3 class="dest-card-title">Carpet Scrubbing & Drying</h3>
+                    <p class="dest-card-desc">High-power industrial shampooers designed to safely lift heavy-traffic stains from delicate weaves.</p>
+                    <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I%20would%20like%20to%20book%20a%20Carpet%20Scrubbing%20and%20Drying%20service." target="_blank" class="btn-outline-explore">Book via WhatsApp</a>
+                </div>
+
+                <!-- Slide Asset Unit 4: General Full Deep Cleaning (Email Routing) -->
+                <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=600');">
+                    <div class="dest-overlay"></div>
+                    <h3 class="dest-card-title">Whole Property Deep Clean</h3>
+                    <p class="dest-card-desc">From ceiling corners and window glass railings down to baseboards and pristine kitchen details.</p>
+                    <a href="mailto:info@jbcleaning.co.ke?subject=Booking%20Inquiry%3A%20Whole%20Property%20Deep%20Clean&body=Hello%20JB%20Cleaning%20Team%2C%0A%0AI%20would%20like%20to%20request%20a%20booking%20for%20a%20Whole%20Property%20Deep%20Clean.%20Kindly%20share%20your%20pricing%20and%20next%20open%20slots.%0A%0AThank%20you%21" class="btn-outline-explore">Book via Email</a>
+                </div>
+
+            </div>
         </div>
 
-        <!-- Slide Asset Unit 2: Sofas & Upholstery -->
-        <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=600');">
-            <div class="dest-overlay"></div>
-            <h3 class="dest-card-title">Luxury Sofa Detailing</h3>
-            <p class="dest-card-desc">Premium extraction machines targeting hidden dust mites, deep spills, and fabric restoration.</p>
-            <button class="btn-outline-explore">Book Now</button>
-        </div>
-
-        <!-- Slide Asset Unit 3: Carpet Extraction -->
-        <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=600');">
-            <div class="dest-overlay"></div>
-            <h3 class="dest-card-title">Carpet Scrubbing & Drying</h3>
-            <p class="dest-card-desc">High-power industrial shampooers designed to safely lift heavy-traffic stains from delicate weaves.</p>
-            <button class="btn-outline-explore">Book Now</button>
-        </div>
-
-        <!-- Slide Asset Unit 4: General Full Deep Cleaning -->
-        <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=600');">
-            <div class="dest-overlay"></div>
-            <h3 class="dest-card-title">Whole Property Deep Clean</h3>
-            <p class="dest-card-desc">From ceiling corners and window glass railings down to baseboards and pristine kitchen details.</p>
-            <button class="btn-outline-explore">Book Now</button>
+        <!-- Carousel Navigation Indicators -->
+        <div class="slider-dots">
+            <div class="dot active" onclick="jumpToSlide(0)"></div>
+            <div class="dot" onclick="jumpToSlide(1)"></div>
+            <div class="dot" onclick="jumpToSlide(2)"></div>
+            <div class="dot" onclick="jumpToSlide(3)"></div>
         </div>
     </section>
 
@@ -428,7 +516,7 @@
         </div>
     </footer>
 
-    <!-- Cookie Consent Banner Banner Layout Frame -->
+    <!-- Cookie Consent Banner Layout Frame -->
     <div class="cookie-consent-banner" id="cookieBanner">
         <div class="cookie-text">
             We use cookies to improve your experience on our website. Read more in our <a href="#">Privacy policy</a>.
@@ -473,9 +561,46 @@
         function closeCookieBanner() {
             document.getElementById('cookieBanner').style.display = 'none';
         }
+
+        // --- WORKING SLIDER LOGIC ---
+        let currentSlideIndex = 0;
+        const totalSlides = 4;
+
+        function updateSliderPosition() {
+            const track = document.getElementById('sliderTrack');
+            const dots = document.querySelectorAll('.dot');
+            
+            // Translate track left/right based on current active slide index
+            track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+            
+            // Update indicator dots active class states
+            dots.forEach((dot, index) => {
+                if(index === currentSlideIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function moveSlide(direction) {
+            currentSlideIndex += direction;
+            if (currentSlideIndex >= totalSlides) {
+                currentSlideIndex = 0; // Loop back around to first slide
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = totalSlides - 1; // Go to last slide if below zero
+            }
+            updateSliderPosition();
+        }
+
+        function jumpToSlide(slideIndex) {
+            currentSlideIndex = slideIndex;
+            updateSliderPosition();
+        }
     </script>
 </body>
 </html>
+
 
 
 
