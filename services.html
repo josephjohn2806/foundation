@@ -42,26 +42,56 @@
             align-items: center;
             padding: 30px 24px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 200;
         }
         .brand-container { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
         .brand-logo-svg { color: var(--brand-gold); font-size: 2rem; }
         .brand-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; }
         
-        .btn-back-home {
+        /* Hamburger Button Match */
+        .menu-toggle-btn {
+            background: none;
+            border: none;
+            color: var(--text-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 250;
+            transition: color 0.3s;
+        }
+
+        /* Fullscreen Navigation Overlay Styled EXACTLY like 1000196409.jpg */
+        .nav-fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(18, 18, 18, 0.97);
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .nav-fullscreen-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .nav-overlay-link {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
             color: var(--text-white);
             text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: all 0.3s;
+            font-weight: 400;
+            transition: opacity 0.2s;
         }
-        .btn-back-home:hover {
-            background: var(--brand-gold);
-            color: #000;
-            border-color: var(--brand-gold);
+        .nav-overlay-link:hover {
+            opacity: 0.7;
         }
 
         /* ------------------ HEADER INTRODUCTION ------------------ */
@@ -82,7 +112,6 @@
             perspective: var(--perspective);
         }
 
-        /* The 3D Card wrapper providing the tilt frame base */
         .tilt-card-wrapper {
             width: 100%;
             perspective: var(--perspective);
@@ -104,7 +133,6 @@
             border-color: rgba(241, 184, 39, 0.4);
         }
 
-        /* Visual Graphic Container Frame */
         .card-graphic-frame {
             height: 220px;
             position: relative;
@@ -126,7 +154,6 @@
             background: linear-gradient(to bottom, transparent 50%, rgba(18, 18, 18, 0.9) 100%);
         }
 
-        /* Typography & Body Specs Layer */
         .card-body-specs {
             padding: 25px 20px;
             transform: translateZ(40px);
@@ -181,26 +208,32 @@
 </head>
 <body>
 
-    <!-- Small Navigation Bar Frame -->
     <nav class="navbar">
         <a href="index.html" class="brand-container">
             <i class="fa-solid fa-broom-ball brand-logo-svg"></i>
             <span class="brand-title">JB Cleaning</span>
         </a>
-        <a href="index.html" class="btn-back-home"><i class="fa-solid fa-arrow-left"></i> Home</a>
+        <button class="menu-toggle-btn" id="menuToggle">
+            <i class="fa-solid fa-bars" id="menuIcon"></i>
+        </button>
     </nav>
 
-    <!-- Heading Block -->
+    <!-- Fullscreen Menu Overlay Content Frame Layout -->
+    <div class="nav-fullscreen-overlay" id="navOverlay">
+        <a href="index.html" class="nav-overlay-link">Home</a>
+        <a href="services.html" class="nav-overlay-link">Services</a>
+        <a href="pricing.html" class="nav-overlay-link">Pricing Plans</a>
+        <a href="index.html#contact" class="nav-overlay-link">Get In Touch</a>
+    </div>
+
     <header class="services-intro-section">
         <p class="services-tag">Our Expertise</p>
         <h1 class="services-title">Exceptional Standards</h1>
         <p class="services-subtitle">Interact with the cards below to see our premium care focus items move in immersive 3D space.</p>
     </header>
 
-    <!-- Responsive Interactive 3D Service Grid Container -->
     <main class="services-grid">
-        
-        <!-- Service Item 1: Post-Construction & Move-In -->
+        <!-- Card 1 -->
         <div class="tilt-card-wrapper">
             <div class="service-3d-card">
                 <div class="card-graphic-frame">
@@ -216,7 +249,7 @@
             </div>
         </div>
 
-        <!-- Service Item 2: Premium Sofa Detailing -->
+        <!-- Card 2 -->
         <div class="tilt-card-wrapper">
             <div class="service-3d-card">
                 <div class="card-graphic-frame">
@@ -232,7 +265,7 @@
             </div>
         </div>
 
-        <!-- Service Item 3: Deep Kitchen Sanitization -->
+        <!-- Card 3 -->
         <div class="tilt-card-wrapper">
             <div class="service-3d-card">
                 <div class="card-graphic-frame">
@@ -248,7 +281,7 @@
             </div>
         </div>
 
-        <!-- Service Item 4: Industrial Carpet & Rug Restorations -->
+        <!-- Card 4 -->
         <div class="tilt-card-wrapper">
             <div class="service-3d-card">
                 <div class="card-graphic-frame">
@@ -263,49 +296,52 @@
                 </div>
             </div>
         </div>
-
     </main>
 
-    <!-- Hybrid Mouse & Mobile Touch 3D Tracking Component Engine -->
     <script>
-        const cards = document.querySelectorAll('.service-3d-card');
+        // Hamburger Toggle logic matching image architecture context
+        const menuToggle = document.getElementById('menuToggle');
+        const navOverlay = document.getElementById('navOverlay');
+        const menuIcon = document.getElementById('menuIcon');
 
+        menuToggle.addEventListener('click', () => {
+            const isActive = navOverlay.classList.toggle('active');
+            if (isActive) {
+                menuIcon.className = 'fa-solid fa-xmark';
+                document.body.style.overflow = 'hidden';
+            } else {
+                menuIcon.className = 'fa-solid fa-bars';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // 3D Motion System
+        const cards = document.querySelectorAll('.service-3d-card');
         function handleMove(e, card) {
             const rect = card.getBoundingClientRect();
-            
-            // Handle both desktop pointer coordinates and mobile multi-touch targets
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
             const x = clientX - rect.left;
             const y = clientY - rect.top;
-
             const cardWidth = rect.width;
             const cardHeight = rect.height;
-
-            // Constrain tilt rotation variables safely between -12 and 12 deg
             const rotateX = ((y / cardHeight) - 0.5) * -16;
             const rotateY = ((x / cardWidth) - 0.5) * 16;
-
             card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
         }
-
         function handleReset(card) {
             card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
         }
-
         cards.forEach(card => {
-            // Desktop Mouse Event Support
             card.addEventListener('mousemove', (e) => handleMove(e, card));
             card.addEventListener('mouseleave', () => handleReset(card));
-
-            // Mobile Touch Screen Support (Uses passive listener settings so page scroll doesn't lag)
             card.addEventListener('touchmove', (e) => handleMove(e, card), { passive: true });
             card.addEventListener('touchend', () => handleReset(card));
         });
     </script>
 </body>
 </html>
+
 
 
 
