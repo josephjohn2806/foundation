@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing Plans | JB Cleaning Company</title>
     
+    <!-- Design Typefaces & Icon Utilities -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -30,71 +31,122 @@
         body {
             background-color: var(--bg-dark);
             color: var(--text-white);
+            overflow-x: hidden;
             padding-bottom: 60px;
         }
 
-        /* Navigation Header Alignment */
+        /* ------------------ NAVIGATION HEADER & HAMBURGER ------------------ */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 30px 24px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 100;
         }
         .brand-container { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
         .brand-logo-svg { color: var(--brand-gold); font-size: 2rem; }
         .brand-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; }
         
-        .btn-back-home {
+        /* Mobile Hamburger Trigger Toggle Button */
+        .menu-toggle-btn {
+            background: none;
+            border: none;
             color: var(--text-white);
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: all 0.3s;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 150;
+            transition: color 0.3s;
         }
-        .btn-back-home:hover {
-            background: var(--brand-gold);
-            color: #000;
-            border-color: var(--brand-gold);
+        .menu-toggle-btn:hover {
+            color: var(--brand-gold);
         }
 
-        /* Content Context Layout */
+        /* Fullscreen Glassmorphism Navigation Overlay */
+        .nav-fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            z-index: 120;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-fullscreen-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .nav-overlay-link {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--text-white);
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: color 0.3s, transform 0.3s;
+            transform: translateY(15px);
+        }
+        .nav-fullscreen-overlay.active .nav-overlay-link {
+            transform: translateY(0);
+        }
+        .nav-overlay-link:hover {
+            color: var(--brand-gold);
+        }
+
+        /* ------------------ HEADER INTRODUCTION ------------------ */
         .pricing-header-section {
             text-align: center;
             padding: 50px 24px 30px 24px;
         }
         .pricing-tag { color: var(--brand-gold); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
         .pricing-title { font-family: 'Playfair Display', serif; font-size: 2.3rem; font-weight: 400; }
+        .pricing-subtitle { color: var(--text-muted); font-size: 0.9rem; max-width: 500px; margin: 10px auto 0 auto; line-height: 1.6; }
 
+        /* ------------------ 3D ANIMATED INTERACTIVE GRID ------------------ */
         .pricing-grid {
-            padding: 0 24px;
+            padding: 20px 24px;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 35px;
             perspective: var(--perspective);
         }
 
-        /* 3D Pricing Card Items Layout */
+        /* The 3D Card wrapper providing the tilt frame base */
+        .tilt-card-wrapper {
+            width: 100%;
+            perspective: var(--perspective);
+            transform-style: preserve-3d;
+        }
+
         .pricing-card {
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            padding: 35px 24px;
+            border-radius: 8px;
+            padding: 40px 24px;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 0.4s, border-color 0.4s;
+            transition: transform 0.2s ease-out, border-color 0.4s;
+            will-change: transform;
         }
         .pricing-card:hover {
-            transform: translateZ(10px);
-            border-color: rgba(241, 184, 39, 0.3);
+            border-color: rgba(241, 184, 39, 0.4);
         }
         .pricing-card.featured-card {
             border: 1px solid var(--brand-gold);
+            background: rgba(241, 184, 39, 0.02);
+            box-shadow: 0 10px 30px rgba(241, 184, 39, 0.05);
         }
+        
         .featured-badge {
             position: absolute;
             top: 15px;
@@ -103,51 +155,68 @@
             color: #000;
             font-size: 0.65rem;
             font-weight: 600;
-            padding: 2px 10px;
-            border-radius: 10px;
+            padding: 3px 12px;
+            border-radius: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            transform: translateZ(20px);
         }
 
-        .plan-name { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 5px; }
-        .plan-cost-row { display: flex; align-items: baseline; gap: 5px; margin-bottom: 20px; }
+        /* Typography Sub-layers Lifted into 3D Space */
+        .plan-name { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.6rem; 
+            margin-bottom: 8px; 
+            font-weight: 500;
+            transform: translateZ(25px);
+        }
+        .plan-cost-row { 
+            display: flex; 
+            align-items: baseline; 
+            gap: 5px; 
+            margin-bottom: 25px; 
+            transform: translateZ(30px);
+        }
         .plan-price { font-size: 2rem; font-weight: 600; color: var(--brand-gold); }
         .plan-unit { color: var(--text-muted); font-size: 0.85rem; }
 
         .plan-features-list {
             list-style: none;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            transform: translateZ(20px);
         }
         .plan-features-list li {
             font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
-        .plan-features-list li i { color: var(--brand-gold); font-size: 0.8rem; }
+        .plan-features-list li i { color: var(--brand-gold); font-size: 0.85rem; }
 
         .btn-plan-action {
             display: block;
             width: 100%;
             text-align: center;
             background: transparent;
-            border: 1px solid #fff;
-            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-white);
             text-decoration: none;
-            padding: 12px 0;
-            border-radius: 4px;
+            padding: 14px 0;
+            border-radius: 6px;
             font-size: 0.85rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s;
+            transform: translateZ(35px);
         }
         .pricing-card.featured-card .btn-plan-action, .btn-plan-action:hover {
             background: var(--brand-gold);
             color: #000;
             border-color: var(--brand-gold);
+            box-shadow: 0 4px 15px rgba(241, 184, 39, 0.2);
         }
     </style>
 </head>
@@ -159,69 +228,143 @@
             <i class="fa-solid fa-broom-ball brand-logo-svg"></i>
             <span class="brand-title">JB Cleaning</span>
         </a>
-        <a href="index.html" class="btn-back-home"><i class="fa-solid fa-arrow-left"></i> Home</a>
+        <button class="menu-toggle-btn" id="menuToggle" aria-label="Toggle Navigation Menu">
+            <i class="fa-solid fa-bars" id="menuIcon"></i>
+        </button>
     </nav>
+
+    <!-- Fullscreen Hamburger Mobile Navigation Overlay -->
+    <div class="nav-fullscreen-overlay" id="navOverlay">
+        <a href="index.html" class="nav-overlay-link">Home</a>
+        <a href="services.html" class="nav-overlay-link">Services</a>
+        <a href="pricing.html" class="nav-overlay-link" style="color: var(--brand-gold);">Pricing</a>
+    </div>
 
     <!-- Heading Block -->
     <header class="pricing-header-section">
         <p class="pricing-tag">Transparent Rates</p>
         <h1 class="pricing-title">Our Cleaning Packages</h1>
+        <p class="pricing-subtitle">Interact with the panels below to view custom deep restoration care investments in dynamic 3D depth layers.</p>
     </header>
 
     <!-- Responsive Cards List Column -->
     <main class="pricing-grid">
         
         <!-- Package 1 -->
-        <div class="pricing-card">
-            <h2 class="plan-name">Standard Cleaning</h2>
-            <div class="plan-cost-row">
-                <span class="plan-price">Ksh 4,500</span>
-                <span class="plan-unit">/ session onwards</span>
+        <div class="tilt-card-wrapper">
+            <div class="pricing-card">
+                <h2 class="plan-name">Standard Cleaning</h2>
+                <div class="plan-cost-row">
+                    <span class="plan-price">Ksh 4,500</span>
+                    <span class="plan-unit">/ session onwards</span>
+                </div>
+                <ul class="plan-features-list">
+                    <li><i class="fa-solid fa-circle-check"></i> Standard floor mopping & vacuuming</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Surface dust dusting & wiping</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Primary toilet surface cleaning</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Internal trash bin evacuation</li>
+                </ul>
+                <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I'm%20interested%20in%20the%20Standard%20Cleaning%20Package." target="_blank" class="btn-plan-action">Get Quote</a>
             </div>
-            <ul class="plan-features-list">
-                <li><i class="fa-solid fa-circle-check"></i> Standard floor mopping & vacuuming</li>
-                <li><i class="fa-solid fa-circle-check"></i> Surface dust dusting & wiping</li>
-                <li><i class="fa-solid fa-circle-check"></i> Primary toilet surface cleaning</li>
-                <li><i class="fa-solid fa-circle-check"></i> Internal trash bin evacuation</li>
-            </ul>
-            <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I'm%20interested%20in%20the%20Standard%20Cleaning%20Package." target="_blank" class="btn-plan-action">Get Quote</a>
         </div>
 
         <!-- Package 2: Premium Starred -->
-        <div class="pricing-card featured-card">
-            <span class="featured-badge">Most Popular</span>
-            <h2 class="plan-name">Deep Structural Clean</h2>
-            <div class="plan-cost-row">
-                <span class="plan-price">Ksh 9,500</span>
-                <span class="plan-unit">/ session onwards</span>
+        <div class="tilt-card-wrapper">
+            <div class="pricing-card featured-card">
+                <span class="featured-badge">Most Popular</span>
+                <h2 class="plan-name">Deep Structural Clean</h2>
+                <div class="plan-cost-row">
+                    <span class="plan-price">Ksh 9,500</span>
+                    <span class="plan-unit">/ session onwards</span>
+                </div>
+                <ul class="plan-features-list">
+                    <li><i class="fa-solid fa-circle-check"></i> Heavy chemical toilet scaling removal</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Deep kitchen grease machine scrub</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Window glass interior & frames scrubbed</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Baseboard scrubbing treatments</li>
+                </ul>
+                <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I%20would%20like%20to%20book%20the%20Deep%20Structural%20Clean%20Package." target="_blank" class="btn-plan-action">Book Package</a>
             </div>
-            <ul class="plan-features-list">
-                <li><i class="fa-solid fa-circle-check"></i> Heavy chemical toilet scaling removal</li>
-                <li><i class="fa-solid fa-circle-check"></i> Deep kitchen grease machine scrub</li>
-                <li><i class="fa-solid fa-circle-check"></i> Window glass interior & frames scrubbed</li>
-                <li><i class="fa-solid fa-circle-check"></i> Baseboard scrubbing treatments</li>
-            </ul>
-            <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I%20would%20like%20to%20book%20the%20Deep%20Structural%20Clean%20Package." target="_blank" class="btn-plan-action">Book Package</a>
         </div>
 
         <!-- Package 3 -->
-        <div class="pricing-card">
-            <h2 class="plan-name">Extraction Add-on</h2>
-            <div class="plan-cost-row">
-                <span class="plan-price">Ksh 1,500</span>
-                <span class="plan-unit">/ seat / carpet item</span>
+        <div class="tilt-card-wrapper">
+            <div class="pricing-card">
+                <h2 class="plan-name">Extraction Add-on</h2>
+                <div class="plan-cost-row">
+                    <span class="plan-price">Ksh 1,500</span>
+                    <span class="plan-unit">/ seat / carpet item</span>
+                </div>
+                <ul class="plan-features-list">
+                    <li><i class="fa-solid fa-circle-check"></i> High-power upholstery machine shampoo</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Deep pile carpet extraction setup</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Allergen, dust-mite and stain removal</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Fast industrial blowing dry finish</li>
+                </ul>
+                <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I%20want%20to%20inquire%20about%20the%20Extraction%20Add-on%20Package." target="_blank" class="btn-plan-action">Get Quote</a>
             </div>
-            <ul class="plan-features-list">
-                <li><i class="fa-solid fa-circle-check"></i> High-power upholstery machine shampoo</li>
-                <li><i class="fa-solid fa-circle-check"></i> Deep pile carpet extraction setup</li>
-                <li><i class="fa-solid fa-circle-check"></i> Allergen, dust-mite and stain removal</li>
-                <li><i class="fa-solid fa-circle-check"></i> Fast industrial blowing dry finish</li>
-            </ul>
-            <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I%20want%20to%20inquire%20about%20the%20Extraction%20Add-on%20Package." target="_blank" class="btn-plan-action">Get Quote</a>
         </div>
 
     </main>
 
+    <!-- Hamburger & Interactive 3D Parallax Tracking Component Engine -->
+    <script>
+        // 1. Hamburger Overlay Toggle Engine
+        const menuToggle = document.getElementById('menuToggle');
+        const navOverlay = document.getElementById('navOverlay');
+        const menuIcon = document.getElementById('menuIcon');
+
+        menuToggle.addEventListener('click', () => {
+            const isActive = navOverlay.classList.toggle('active');
+            
+            // Switch icons context based on open status
+            if (isActive) {
+                menuIcon.className = 'fa-solid fa-xmark';
+                document.body.style.overflow = 'hidden'; // Stop background scrolling
+            } else {
+                menuIcon.className = 'fa-solid fa-bars';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // 2. Hybrid Mouse & Mobile Touch 3D Tracking Engine
+        const cards = document.querySelectorAll('.pricing-card');
+
+        function handleMove(e, card) {
+            const rect = card.getBoundingClientRect();
+            
+            // Handle both desktop pointer coordinates and mobile multi-touch targets
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+
+            const cardWidth = rect.width;
+            const cardHeight = rect.height;
+
+            // Constrain tilt rotation variables safely between -12 and 12 deg
+            const rotateX = ((y / cardHeight) - 0.5) * -16;
+            const rotateY = ((x / cardWidth) - 0.5) * 16;
+
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        }
+
+        function handleReset(card) {
+            card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        }
+
+        cards.forEach(card => {
+            // Desktop Mouse Event Support
+            card.addEventListener('mousemove', (e) => handleMove(e, card));
+            card.addEventListener('mouseleave', () => handleReset(card));
+
+            // Mobile Touch Screen Support with passive configuration
+            card.addEventListener('touchmove', (e) => handleMove(e, card), { passive: true });
+            card.addEventListener('touchend', () => handleReset(card));
+        });
+    </script>
 </body>
 </html>
+
 
