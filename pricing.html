@@ -51,6 +51,29 @@
         .brand-logo-svg { color: var(--brand-gold); font-size: 2rem; }
         .brand-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; }
         
+        .nav-actions-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .nav-contact-direct {
+            color: var(--brand-gold);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid rgba(241, 184, 39, 0.3);
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .nav-contact-direct:hover {
+            background: var(--brand-gold);
+            color: #000;
+            box-shadow: 0 4px 12px rgba(241, 184, 39, 0.15);
+        }
+
         .menu-toggle-btn {
             background: none;
             border: none;
@@ -202,9 +225,12 @@
             <i class="fa-solid fa-broom-ball brand-logo-svg"></i>
             <span class="brand-title">JB Cleaning</span>
         </a>
-        <button class="menu-toggle-btn" id="menuToggle">
-            <i class="fa-solid fa-bars" id="menuIcon"></i>
-        </button>
+        <div class="nav-actions-right">
+            <a href="index.html#contact" class="nav-contact-direct">Contact</a>
+            <button class="menu-toggle-btn" id="menuToggle">
+                <i class="fa-solid fa-bars" id="menuIcon"></i>
+            </button>
+        </div>
     </nav>
 
     <div class="nav-fullscreen-overlay" id="navOverlay">
@@ -311,6 +337,7 @@
     </script>
 </body>
 </html>
+
 
 
 
