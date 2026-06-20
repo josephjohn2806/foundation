@@ -1,1 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans | JB Cleaning Company</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --brand-gold: #f1b827; 
+            --text-white: #ffffff;
+            --text-muted: #b0b0b0;
+            --bg-dark: #121212;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --perspective: 1000px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            padding-bottom: 60px;
+        }
+
+        /* Navigation Header Alignment */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .brand-container { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+        .brand-logo-svg { color: var(--brand-gold); font-size: 2rem; }
+        .brand-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; }
+        
+        .btn-back-home {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        .btn-back-home:hover {
+            background: var(--brand-gold);
+            color: #000;
+            border-color: var(--brand-gold);
+        }
+
+        /* Content Context Layout */
+        .pricing-header-section {
+            text-align: center;
+            padding: 50px 24px 30px 24px;
+        }
+        .pricing-tag { color: var(--brand-gold); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
+        .pricing-title { font-family: 'Playfair Display', serif; font-size: 2.3rem; font-weight: 400; }
+
+        .pricing-grid {
+            padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            perspective: var(--perspective);
+        }
+
+        /* 3D Pricing Card Items Layout */
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding: 35px 24px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.4s, border-color 0.4s;
+        }
+        .pricing-card:hover {
+            transform: translateZ(10px);
+            border-color: rgba(241, 184, 39, 0.3);
+        }
+        .pricing-card.featured-card {
+            border: 1px solid var(--brand-gold);
+        }
+        .featured-badge {
+            position: absolute;
+            top: 15px;
+            right: 24px;
+            background: var(--brand-gold);
+            color: #000;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .plan-name { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 5px; }
+        .plan-cost-row { display: flex; align-items: baseline; gap: 5px; margin-bottom: 20px; }
+        .plan-price { font-size: 2rem; font-weight: 600; color: var(--brand-gold); }
+        .plan-unit { color: var(--text-muted); font-size: 0.85rem; }
+
+        .plan-features-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        .plan-features-list li {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .plan-features-list li i { color: var(--brand-gold); font-size: 0.8rem; }
+
+        .btn-plan-action {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 0;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        .pricing-card.featured-card .btn-plan-action, .btn-plan-action:hover {
+            background: var(--brand-gold);
+            color: #000;
+            border-color: var(--brand-gold);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Small Navigation Bar Frame -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-container">
+            <i class="fa-solid fa-broom-ball brand-logo-svg"></i>
+            <span class="brand-title">JB Cleaning</span>
+        </a>
+        <a href="index.html" class="btn-back-home"><i class="fa-solid fa-arrow-left"></i> Home</a>
+    </nav>
+
+    <!-- Heading Block -->
+    <header class="pricing-header-section">
+        <p class="pricing-tag">Transparent Rates</p>
+        <h1 class="pricing-title">Our Cleaning Packages</h1>
+    </header>
+
+    <!-- Responsive Cards List Column -->
+    <main class="pricing-grid">
+        
+        <!-- Package 1 -->
+        <div class="pricing-card">
+            <h2 class="plan-name">Standard Cleaning</h2>
+            <div class="plan-cost-row">
+                <span class="plan-price">Ksh 4,500</span>
+                <span class="plan-unit">/ session onwards</span>
+            </div>
+            <ul class="plan-features-list">
+                <li><i class="fa-solid fa-circle-check"></i> Standard floor mopping & vacuuming</li>
+                <li><i class="fa-solid fa-circle-check"></i> Surface dust dusting & wiping</li>
+                <li><i class="fa-solid fa-circle-check"></i> Primary toilet surface cleaning</li>
+                <li><i class="fa-solid fa-circle-check"></i> Internal trash bin evacuation</li>
+            </ul>
+            <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I'm%20interested%20in%20the%20Standard%20Cleaning%20Package." target="_blank" class="btn-plan-action">Get Quote</a>
+        </div>
+
+        <!-- Package 2: Premium Starred -->
+        <div class="pricing-card featured-card">
+            <span class="featured-badge">Most Popular</span>
+            <h2 class="plan-name">Deep Structural Clean</h2>
+            <div class="plan-cost-row">
+                <span class="plan-price">Ksh 9,500</span>
+                <span class="plan-unit">/ session onwards</span>
+            </div>
+            <ul class="plan-features-list">
+                <li><i class="fa-solid fa-circle-check"></i> Heavy chemical toilet scaling removal</li>
+                <li><i class="fa-solid fa-circle-check"></i> Deep kitchen grease machine scrub</li>
+                <li><i class="fa-solid fa-circle-check"></i> Window glass interior & frames scrubbed</li>
+                <li><i class="fa-solid fa-circle-check"></i> Baseboard scrubbing treatments</li>
+            </ul>
+            <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I%20would%20like%20to%20book%20the%20Deep%20Structural%20Clean%20Package." target="_blank" class="btn-plan-action">Book Package</a>
+        </div>
+
+        <!-- Package 3 -->
+        <div class="pricing-card">
+            <h2 class="plan-name">Extraction Add-on</h2>
+            <div class="plan-cost-row">
+                <span class="plan-price">Ksh 1,500</span>
+                <span class="plan-unit">/ seat / carpet item</span>
+            </div>
+            <ul class="plan-features-list">
+                <li><i class="fa-solid fa-circle-check"></i> High-power upholstery machine shampoo</li>
+                <li><i class="fa-solid fa-circle-check"></i> Deep pile carpet extraction setup</li>
+                <li><i class="fa-solid fa-circle-check"></i> Allergen, dust-mite and stain removal</li>
+                <li><i class="fa-solid fa-circle-check"></i> Fast industrial blowing dry finish</li>
+            </ul>
+            <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I%20want%20to%20inquire%20about%20the%20Extraction%20Add-on%20Package." target="_blank" class="btn-plan-action">Get Quote</a>
+        </div>
+
+    </main>
+
+</body>
+</html>
 
