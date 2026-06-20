@@ -32,7 +32,9 @@
             background-color: var(--bg-dark);
             color: var(--text-white);
             overflow-x: hidden;
-            padding-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* ------------------ NAVIGATION HEADER ------------------ */
@@ -59,7 +61,7 @@
             transition: color 0.3s;
         }
 
-        /* Fullscreen Navigation Overlay Layout & Animation System */
+        /* Fullscreen Navigation Overlay */
         .nav-fullscreen-overlay {
             position: fixed;
             top: 0;
@@ -73,8 +75,6 @@
             justify-content: center;
             align-items: center;
             gap: 35px;
-            
-            /* Initial Hidden State Animation Config */
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
@@ -82,43 +82,27 @@
                         transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
                         visibility 0.5s;
         }
-        
-        /* Active State Reveal trigger */
         .nav-fullscreen-overlay.active {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
-        
         .nav-overlay-link {
             font-family: 'Playfair Display', serif;
             font-size: 2.4rem;
             color: var(--text-white);
             text-decoration: none;
             font-weight: 400;
-            
-            /* Staggered text link push up animation setup */
             transform: translateY(20px);
             opacity: 0;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                        opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        /* Trigger Link animations step-by-step when parent menu gets active */
-        .nav-fullscreen-overlay.active .nav-overlay-link {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        /* Delays for staggered list flow effect */
+        .nav-fullscreen-overlay.active .nav-overlay-link { transform: translateY(0); opacity: 1; }
         .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(1) { transition-delay: 0.10s; }
         .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(2) { transition-delay: 0.18s; }
         .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(3) { transition-delay: 0.26s; }
         .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(4) { transition-delay: 0.34s; }
-
-        .nav-overlay-link:hover {
-            opacity: 0.7;
-        }
+        .nav-overlay-link:hover { opacity: 0.7; }
 
         /* ------------------ HEADER INTRODUCTION ------------------ */
         .pricing-header-section {
@@ -136,14 +120,9 @@
             flex-direction: column;
             gap: 35px;
             perspective: var(--perspective);
+            flex: 1;
         }
-
-        .tilt-card-wrapper {
-            width: 100%;
-            perspective: var(--perspective);
-            transform-style: preserve-3d;
-        }
-
+        .tilt-card-wrapper { width: 100%; perspective: var(--perspective); transform-style: preserve-3d; }
         .pricing-card {
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -154,9 +133,7 @@
             transition: transform 0.2s ease-out, border-color 0.4s;
             will-change: transform;
         }
-        .pricing-card:hover {
-            border-color: rgba(241, 184, 39, 0.4);
-        }
+        .pricing-card:hover { border-color: rgba(241, 184, 39, 0.4); }
         .pricing-card.featured-card {
             border: 1px solid var(--brand-gold);
             background: rgba(241, 184, 39, 0.02);
@@ -164,74 +141,57 @@
         }
         
         .featured-badge {
-            position: absolute;
-            top: 15px;
-            right: 24px;
-            background: var(--brand-gold);
-            color: #000;
-            font-size: 0.65rem;
-            font-weight: 600;
-            padding: 3px 12px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transform: translateZ(20px);
+            position: absolute; top: 15px; right: 24px; background: var(--brand-gold); color: #000;
+            font-size: 0.65rem; font-weight: 600; padding: 3px 12px; border-radius: 20px;
+            text-transform: uppercase; letter-spacing: 1px; transform: translateZ(20px);
         }
-
-        .plan-name { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 1.6rem; 
-            margin-bottom: 8px; 
-            font-weight: 500;
-            transform: translateZ(25px);
-        }
-        .plan-cost-row { 
-            display: flex; 
-            align-items: baseline; 
-            gap: 5px; 
-            margin-bottom: 25px; 
-            transform: translateZ(30px);
-        }
+        .plan-name { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 8px; font-weight: 500; transform: translateZ(25px); }
+        .plan-cost-row { display: flex; align-items: baseline; gap: 5px; margin-bottom: 25px; transform: translateZ(30px); }
         .plan-price { font-size: 2rem; font-weight: 600; color: var(--brand-gold); }
         .plan-unit { color: var(--text-muted); font-size: 0.85rem; }
 
-        .plan-features-list {
-            list-style: none;
-            margin-bottom: 35px;
-            transform: translateZ(20px);
-        }
-        .plan-features-list li {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .plan-features-list { list-style: none; margin-bottom: 35px; transform: translateZ(20px); }
+        .plan-features-list li { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
         .plan-features-list li i { color: var(--brand-gold); font-size: 0.85rem; }
 
         .btn-plan-action {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-white);
-            text-decoration: none;
-            padding: 14px 0;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            transform: translateZ(35px);
+            display: block; width: 100%; text-align: center; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-white); text-decoration: none; padding: 14px 0; border-radius: 6px; font-size: 0.85rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; transform: translateZ(35px);
         }
         .pricing-card.featured-card .btn-plan-action, .btn-plan-action:hover {
-            background: var(--brand-gold);
-            color: #000;
-            border-color: var(--brand-gold);
-            box-shadow: 0 4px 15px rgba(241, 184, 39, 0.2);
+            background: var(--brand-gold); color: #000; border-color: var(--brand-gold); box-shadow: 0 4px 15px rgba(241, 184, 39, 0.2);
+        }
+
+        /* ------------------ MINIMALIST PRESTIGE FOOTER ------------------ */
+        .site-footer {
+            padding: 60px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            background-color: #0f0f0f;
+        }
+        .footer-socials-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+        .social-icon-node {
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-icon-node:hover {
+            color: var(--brand-gold);
+            transform: translateY(-3px);
+        }
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
     </style>
 </head>
@@ -247,7 +207,6 @@
         </button>
     </nav>
 
-    <!-- Fullscreen Overlay Content Frame Layout -->
     <div class="nav-fullscreen-overlay" id="navOverlay">
         <a href="index.html" class="nav-overlay-link">Home</a>
         <a href="services.html" class="nav-overlay-link">Services</a>
@@ -298,25 +257,18 @@
                 <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I%20would%20like%20to%20book%20the%20Deep%20Structural%20Clean%20Package." target="_blank" class="btn-plan-action">Book Package</a>
             </div>
         </div>
-
-        <!-- Package 3 -->
-        <div class="tilt-card-wrapper">
-            <div class="pricing-card">
-                <h2 class="plan-name">Extraction Add-on</h2>
-                <div class="plan-cost-row">
-                    <span class="plan-price">Ksh 1,500</span>
-                    <span class="plan-unit">/ seat / carpet item</span>
-                </div>
-                <ul class="plan-features-list">
-                    <li><i class="fa-solid fa-circle-check"></i> High-power upholstery machine shampoo</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Deep pile carpet extraction setup</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Allergen, dust-mite and stain removal</li>
-                    <li><i class="fa-solid fa-circle-check"></i> Fast industrial blowing dry finish</li>
-                </ul>
-                <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I%20want%20to%20inquire%20about%20the%20Extraction%20Add-on%20Package." target="_blank" class="btn-plan-action">Get Quote</a>
-            </div>
-        </div>
     </main>
+
+    <!-- Synchronized Footer Frame -->
+    <footer class="site-footer">
+        <div class="footer-socials-row">
+            <a href="https://wa.me/254117747358" target="_blank" class="social-icon-node" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://instagram.com" target="_blank" class="social-icon-node" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://facebook.com" target="_blank" class="social-icon-node" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://tiktok.com" target="_blank" class="social-icon-node" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <p class="footer-copyright">&copy; 2026 JB Cleaning Company. All Rights Reserved.</p>
+    </footer>
 
     <script>
         const menuToggle = document.getElementById('menuToggle');
@@ -334,7 +286,6 @@
             }
         });
 
-        // 3D Motion System
         const cards = document.querySelectorAll('.pricing-card');
         function handleMove(e, card) {
             const rect = card.getBoundingClientRect();
@@ -360,6 +311,7 @@
     </script>
 </body>
 </html>
+
 
 
 
