@@ -1,0 +1,608 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get In Touch & Executive Team | JB Cleaning Company</title>
+    
+    <!-- Design Typefaces & Icon Utilities -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --brand-gold: #f1b827; 
+            --brand-gold-glow: rgba(241, 184, 39, 0.35);
+            --text-white: #ffffff;
+            --text-muted: #b0b0b0;
+            --bg-dark: #121212;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border-glow: rgba(241, 184, 39, 0.15);
+            --perspective: 1000px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Smooth Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ------------------ TOP UTILITY CONTACT BAR ------------------ */
+        .top-info-bar {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 10px 24px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        .top-info-bar a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        .top-info-bar a:hover {
+            color: var(--brand-gold);
+        }
+        .top-info-divider {
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* ------------------ NAVIGATION HEADER ------------------ */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 200;
+        }
+        .brand-container { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+        .brand-logo-svg { color: var(--brand-gold); font-size: 2rem; }
+        .brand-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; }
+        
+        .nav-actions-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .menu-toggle-btn {
+            background: none;
+            border: none;
+            color: var(--text-white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 250;
+            transition: color 0.3s;
+        }
+
+        /* Fullscreen Navigation Overlay */
+        .nav-fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(18, 18, 18, 0.98);
+            z-index: 150;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 35px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                        visibility 0.5s;
+        }
+        .nav-fullscreen-overlay.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .nav-overlay-link {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 400;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-fullscreen-overlay.active .nav-overlay-link { transform: translateY(0); opacity: 1; }
+        .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(1) { transition-delay: 0.10s; }
+        .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(2) { transition-delay: 0.18s; }
+        .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(3) { transition-delay: 0.26s; }
+        .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(4) { transition-delay: 0.34s; }
+        .nav-overlay-link:hover { opacity: 0.7; }
+
+        /* ------------------ HEADER INTRODUCTION ------------------ */
+        .contact-header-section {
+            text-align: center;
+            padding: 50px 24px 30px 24px;
+        }
+        .contact-tag { color: var(--brand-gold); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
+        .contact-title { font-family: 'Playfair Display', serif; font-size: 2.3rem; font-weight: 400; }
+        .contact-subtitle { color: var(--text-muted); font-size: 0.9rem; max-width: 500px; margin: 10px auto 0 auto; line-height: 1.6; }
+
+        /* ------------------ MAIN GRID SECTION ------------------ */
+        .content-container {
+            padding: 20px 24px 60px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 45px;
+            flex: 1;
+        }
+
+        /* ------------------ FOUNDERS HISTORY CARD (3D TILT) ------------------ */
+        .tilt-card-wrapper { width: 100%; perspective: var(--perspective); transform-style: preserve-3d; }
+        .history-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.2s ease-out, border-color 0.4s;
+            position: relative;
+            will-change: transform;
+            display: flex;
+            flex-direction: column;
+        }
+        .history-card:hover { border-color: rgba(241, 184, 39, 0.4); }
+
+        .history-graphic-frame { height: 260px; position: relative; overflow: hidden; transform: translateZ(20px); }
+        .history-graphic-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .history-card:hover .history-graphic-frame img { transform: scale(1.05); }
+        .history-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, transparent 30%, rgba(18, 18, 18, 0.95) 100%); }
+
+        .history-body { padding: 30px 24px; transform: translateZ(40px); }
+        .history-badge { color: var(--brand-gold); font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        .history-heading { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 15px; font-weight: 500; }
+        .history-text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 15px; }
+
+        /* ------------------ "SPECIAL" MEET OUR TEAM SECTION ------------------ */
+        .special-team-section {
+            padding: 40px 0;
+            background: linear-gradient(180deg, transparent, rgba(241, 184, 39, 0.02) 50%, transparent);
+            border-radius: 16px;
+        }
+        .special-team-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .special-team-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 35px;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+        
+        .founders-row {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .founder-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            overflow: hidden;
+        }
+        .founder-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 0%, var(--border-glow), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+        .founder-card:hover {
+            border-color: var(--brand-gold);
+            box-shadow: 0 10px 30px var(--brand-gold-glow);
+            transform: translateY(-5px);
+        }
+        .founder-card:hover::before {
+            opacity: 1;
+        }
+
+        .founder-avatar-wrapper {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, var(--brand-gold), rgba(255, 255, 255, 0.1));
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transform: translateZ(30px);
+        }
+        .founder-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .founder-avatar i {
+            font-size: 2.5rem;
+            color: var(--brand-gold);
+        }
+
+        /* Live Status Indicator */
+        .status-badge {
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%) translateZ(40px);
+            background: #10b981;
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+        .status-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(0.8); opacity: 0.5; }
+        }
+
+        .founder-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--text-white);
+            transform: translateZ(25px);
+        }
+        .founder-role {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--brand-gold);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+            transform: translateZ(20px);
+        }
+        .founder-bio {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            padding: 0 10px;
+            transform: translateZ(15px);
+        }
+
+        .btn-meet-founder {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-white);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s;
+            transform: translateZ(35px);
+        }
+        .founder-card:hover .btn-meet-founder {
+            background: var(--brand-gold);
+            color: #000;
+            border-color: var(--brand-gold);
+            box-shadow: 0 4px 15px rgba(241, 184, 39, 0.3);
+        }
+
+        /* ------------------ INTERACTIVE CONTACT FORM ------------------ */
+        .contact-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 35px 24px;
+            transform-style: preserve-3d;
+            transition: transform 0.2s ease-out, border-color 0.4s;
+            will-change: transform;
+        }
+        .contact-card:hover { border-color: rgba(241, 184, 39, 0.3); }
+        .form-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 25px; font-weight: 500; transform: translateZ(25px); }
+
+        .form-group { margin-bottom: 20px; transform: translateZ(20px); }
+        .form-label { display: block; color: var(--brand-gold); font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .form-input {
+            width: 100%; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-white); padding: 12px 16px; border-radius: 6px; font-size: 0.9rem; outline: none; transition: border-color 0.3s;
+        }
+        .form-input:focus { border-color: var(--brand-gold); background: rgba(255, 255, 255, 0.05); }
+        textarea.form-input { min-height: 120px; resize: vertical; }
+
+        .btn-submit {
+            display: block; width: 100%; text-align: center; background: transparent; border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-white); text-decoration: none; padding: 14px 0; border-radius: 6px; font-size: 0.85rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; cursor: pointer; transform: translateZ(30px);
+        }
+        .btn-submit:hover {
+            background: var(--brand-gold); color: #000; border-color: var(--brand-gold); box-shadow: 0 4px 15px rgba(241, 184, 39, 0.2);
+        }
+
+        /* ------------------ MINIMALIST PRESTIGE FOOTER ------------------ */
+        .site-footer {
+            padding: 60px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            background-color: #0f0f0f;
+        }
+        .footer-socials-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+        .social-icon-node {
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-icon-node:hover {
+            color: var(--brand-gold);
+            transform: translateY(-3px);
+        }
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-info-bar">
+        <a href="tel:+254117747358">+254 117 747 358</a>
+        <span class="top-info-divider">|</span>
+        <a href="mailto:info@jbcleaning.co.ke">info@jbcleaning.co.ke</a>
+    </div>
+
+    <nav class="navbar">
+        <a href="index.html" class="brand-container">
+            <i class="fa-solid fa-broom-ball brand-logo-svg"></i>
+            <span class="brand-title">JB Cleaning</span>
+        </a>
+        <div class="nav-actions-right">
+            <button class="menu-toggle-btn" id="menuToggle">
+                <i class="fa-solid fa-bars" id="menuIcon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="nav-fullscreen-overlay" id="navOverlay">
+        <a href="index.html" class="nav-overlay-link">Home</a>
+        <a href="services.html" class="nav-overlay-link">Services</a>
+        <a href="pricing.html" class="nav-overlay-link">Pricing Plans</a>
+        <a href="get-in-touch.html" class="nav-overlay-link" style="color: var(--brand-gold);">Get In Touch</a>
+    </div>
+
+    <header class="contact-header-section">
+        <p class="contact-tag">Get In Touch</p>
+        <h1 class="contact-title">Let's Connect</h1>
+        <p class="contact-subtitle">Explore the history behind our pristine values, coordinate custom requirements, or schedule direct advisory sessions with us.</p>
+    </header>
+
+    <main class="content-container">
+        <!-- Section 1: Founders Story -->
+        <div class="tilt-card-wrapper">
+            <div class="history-card">
+                <div class="history-graphic-frame">
+                    <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?q=80&w=1200" alt="Kyulu Landscape">
+                    <div class="history-overlay"></div>
+                </div>
+                <div class="history-body">
+                    <span class="history-badge">The Origin</span>
+                    <h2 class="history-heading">Two Pundous, One Vision</h2>
+                    <p class="history-text">
+                        JB Cleaning Company began not just as a business venture, but as a journey of true brotherhood. Founded by <strong>Joseph John</strong> and <strong>Peter Regan</strong>, the roots of our values trace back to the serene, rolling landscapes of Kyulu.
+                    </p>
+                    <p class="history-text">
+                        It was there in Kyulu that these two <em>pundous</em> first met. Sharing a profound appreciation for discipline, aesthetic beauty, and meticulous attention to detail, their instant connection transcended mere friendship—they became family.
+                    </p>
+                    <p class="history-text">
+                        By combining their shared values and dedication to precision, they established JB Cleaning Company. Today, that legacy of trust, family bond, and uncompromising premium service is infused into every pristine space we care for.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPECIAL SECTION: Meet with Our Team -->
+        <section class="special-team-section">
+            <h2 class="special-team-title">Direct Executive Access</h2>
+            <p class="special-team-subtitle">Skip the queue. Book an exclusive consultation directly with our founders to draft your custom premium care plan.</p>
+            
+            <div class="founders-row">
+                <!-- Founder 1: Joseph John -->
+                <div class="tilt-card-wrapper">
+                    <div class="founder-card">
+                        <div class="founder-avatar-wrapper">
+                            <div class="founder-avatar">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <div class="status-badge">Live Advisory Active</div>
+                        </div>
+                        <h3 class="founder-name">Joseph John</h3>
+                        <p class="founder-role">Co-Founder & Director of Operations</p>
+                        <p class="founder-bio">Managing on-site logistics and structural detailing standards with pristine operational precision across Nairobi's luxury spaces.</p>
+                        <a href="https://wa.me/254117747358?text=Hello%20Joseph%20John,%20I%27d%20like%20to%20schedule%20a%20personal%20operations%20consultation%20for%20my%20space." target="_blank" class="btn-meet-founder">
+                            <i class="fa-solid fa-calendar-check"></i> Meet with Joseph
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Founder 2: Peter Regan -->
+                <div class="tilt-card-wrapper">
+                    <div class="founder-card">
+                        <div class="founder-avatar-wrapper">
+                            <div class="founder-avatar">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <div class="status-badge">Consulting Open</div>
+                        </div>
+                        <h3 class="founder-name">Peter Regan</h3>
+                        <p class="founder-role">Co-Founder & Chief of Quality Assurance</p>
+                        <p class="founder-bio">Ensuring premium product protocols, client relationship excellence, and keeping the spirit of Kyulu's high standards alive.</p>
+                        <a href="mailto:info@jbcleaning.co.ke?subject=Executive%20Consultation%20with%20Peter%20Regan&body=Hello%20Peter,%20I%20would%20like%20to%20arrange%20a%20consultation%20to%20discuss..." class="btn-meet-founder">
+                            <i class="fa-solid fa-envelope"></i> Schedule with Peter
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Contact Form -->
+        <div class="tilt-card-wrapper">
+            <div class="contact-card">
+                <h2 class="form-title">Send a General Inquiry</h2>
+                <form action="mailto:info@jbcleaning.co.ke" method="post" enctype="text/plain">
+                    <div class="form-group">
+                        <label class="form-label" for="client-name">Your Name</label>
+                        <input class="form-input" type="text" id="client-name" name="name" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="client-email">Email Address</label>
+                        <input class="form-input" type="email" id="client-email" name="email" placeholder="example@mail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="client-service">Preferred Package</label>
+                        <input class="form-input" type="text" id="client-service" name="service" placeholder="Deep Structural Clean, Luxury Sofa Detailing...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="client-msg">Your Message</label>
+                        <textarea class="form-input" id="client-msg" name="message" placeholder="How can we elevate your space?" required></textarea>
+                    </div>
+                    <button class="btn-submit" type="submit">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Synchronized Footer Frame -->
+    <footer class="site-footer">
+        <div class="footer-socials-row">
+            <a href="https://wa.me/254117747358" target="_blank" class="social-icon-node" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://instagram.com" target="_blank" class="social-icon-node" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://facebook.com" target="_blank" class="social-icon-node" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://tiktok.com" target="_blank" class="social-icon-node" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <p class="footer-copyright">&copy; 2026 JB Cleaning Company. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navOverlay = document.getElementById('navOverlay');
+        const menuIcon = document.getElementById('menuIcon');
+
+        menuToggle.addEventListener('click', () => {
+            const isActive = navOverlay.classList.toggle('active');
+            if (isActive) {
+                menuIcon.className = 'fa-solid fa-xmark';
+                document.body.style.overflow = 'hidden';
+            } else {
+                menuIcon.className = 'fa-solid fa-bars';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // 3D Tilt Multi-Card Coordination
+        const cards = document.querySelectorAll('.history-card, .contact-card, .founder-card');
+        function handleMove(e, card) {
+            const rect = card.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+            const cardWidth = rect.width;
+            const cardHeight = rect.height;
+            const rotateX = ((y / cardHeight) - 0.5) * -12;
+            const rotateY = ((x / cardWidth) - 0.5) * 12;
+            card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.01, 1.01, 1.01)`;
+        }
+        function handleReset(card) {
+            card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        }
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => handleMove(e, card));
+            card.addEventListener('mouseleave', () => handleReset(card));
+            card.addEventListener('touchmove', (e) => handleMove(e, card), { passive: true });
+            card.addEventListener('touchend', () => handleReset(card));
+        });
+    </script>
+</body>
+</html>
+
+```
