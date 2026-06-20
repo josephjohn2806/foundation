@@ -1,1 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Premium Services | JB Cleaning Company</title>
+    
+    <!-- Design Typefaces & Icon Utilities -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --brand-gold: #f1b827; 
+            --text-white: #ffffff;
+            --text-muted: #b0b0b0;
+            --bg-dark: #121212;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --perspective: 1000px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
+            padding-bottom: 60px;
+        }
+
+        /* ------------------ NAVIGATION HEADER ------------------ */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .brand-container { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+        .brand-logo-svg { color: var(--brand-gold); font-size: 2rem; }
+        .brand-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; }
+        
+        .btn-back-home {
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        .btn-back-home:hover {
+            background: var(--brand-gold);
+            color: #000;
+            border-color: var(--brand-gold);
+        }
+
+        /* ------------------ HEADER INTRODUCTION ------------------ */
+        .services-intro-section {
+            text-align: center;
+            padding: 50px 24px 30px 24px;
+        }
+        .services-tag { color: var(--brand-gold); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 5px; }
+        .services-title { font-family: 'Playfair Display', serif; font-size: 2.3rem; font-weight: 400; }
+        .services-subtitle { color: var(--text-muted); font-size: 0.9rem; max-width: 500px; margin: 10px auto 0 auto; line-height: 1.6; }
+
+        /* ------------------ 3D ANIMATED INTERACTIVE GRID ------------------ */
+        .services-grid {
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            perspective: var(--perspective);
+        }
+
+        /* The 3D Card wrapper providing the tilt frame base */
+        .tilt-card-wrapper {
+            width: 100%;
+            perspective: var(--perspective);
+            transform-style: preserve-3d;
+        }
+
+        .service-3d-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out, border-color 0.4s;
+            position: relative;
+        }
+        
+        .service-3d-card:hover {
+            border-color: rgba(241, 184, 39, 0.4);
+        }
+
+        /* Visual Graphic Container Frame */
+        .card-graphic-frame {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(20px); /* Lifts image off the base layer */
+        }
+        .card-graphic-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .service-3d-card:hover .card-graphic-frame img {
+            transform: scale(1.08);
+        }
+        .graphic-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(18, 18, 18, 0.9) 100%);
+        }
+
+        /* Typography & Body Specs Layer */
+        .card-body-specs {
+            padding: 25px 20px;
+            transform: translateZ(40px); /* Lifts content layer higher for explicit 3D split parallax */
+        }
+        
+        .service-icon-marker {
+            position: absolute;
+            top: -25px;
+            right: 25px;
+            background: var(--brand-gold);
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(241, 184, 39, 0.3);
+            transform: translateZ(10px);
+        }
+
+        .service-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .service-detail-text {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn-card-routing {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--brand-gold);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: gap 0.3s;
+        }
+        .btn-card-routing:hover {
+            gap: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Small Navigation Bar Frame -->
+    <nav class="navbar">
+        <a href="index.html" class="brand-container">
+            <i class="fa-solid fa-broom-ball brand-logo-svg"></i>
+            <span class="brand-title">JB Cleaning</span>
+        </a>
+        <a href="index.html" class="btn-back-home"><i class="fa-solid fa-arrow-left"></i> Home</a>
+    </nav>
+
+    <!-- Heading Block -->
+    <header class="services-intro-section">
+        <p class="services-tag">Our Expertise</p>
+        <h1 class="services-title">Exceptional Standards</h1>
+        <p class="services-subtitle">Move your pointer or swipe over the cards below to see our structural care focus items shift in immersive 3D space.</p>
+    </header>
+
+    <!-- Responsive Interactive 3D Service Grid Container -->
+    <main class="services-grid">
+        
+        <!-- Service Item 1: Post-Construction & Move-In -->
+        <div class="tilt-card-wrapper">
+            <div class="service-3d-card">
+                <div class="card-graphic-frame">
+                    <img src="https://images.unsplash.com/photo-1603712446218-86773b7da087?q=80&w=600" alt="Post-Construction Cleaning">
+                    <div class="graphic-overlay"></div>
+                </div>
+                <div class="card-body-specs">
+                    <div class="service-icon-marker"><i class="fa-solid fa-trowel-bricks"></i></div>
+                    <h2 class="service-heading">Post-Construction Cleanup</h2>
+                    <p class="service-detail-text">Elimination of fine industrial dust coatings, cement speck spatters, paint droplets, and residual adhesives across newly finalized real estate projects.</p>
+                    <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning,%20I'm%20inquiring%20about%20Post-Construction%20Cleanup." target="_blank" class="btn-card-routing">Request Quote <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Item 2: Premium Sofa Detailing -->
+        <div class="tilt-card-wrapper">
+            <div class="service-3d-card">
+                <div class="card-graphic-frame">
+                    <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=600" alt="Luxury Sofa Detailing">
+                    <div class="graphic-overlay"></div>
+                </div>
+                <div class="card-body-specs">
+                    <div class="service-icon-marker"><i class="fa-solid fa-couch"></i></div>
+                    <h2 class="service-heading">Luxury Sofa Detailing</h2>
+                    <p class="service-detail-text">Using precise deep injection machines and eco-shampoos to scrub away skin-oil darkening, structural spills, and hidden dust mites safely.</p>
+                    <a href="mailto:info@jbcleaning.co.ke?subject=Inquiry%3A%20Sofa%20Detailing" class="btn-card-routing">Request Quote <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Item 3: Deep Kitchen Sanitization -->
+        <div class="tilt-card-wrapper">
+            <div class="service-3d-card">
+                <div class="card-graphic-frame">
+                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=600" alt="Kitchen Deep Cleaning">
+                    <div class="graphic-overlay"></div>
+                </div>
+                <div class="card-body-specs">
+                    <div class="service-icon-marker"><i class="fa-solid fa-kitchen-set"></i></div>
+                    <h2 class="service-heading">Commercial Kitchen Sanitization</h2>
+                    <p class="service-detail-text">Targeted removal of carbonized grease layers inside exhaust hoods, oven setups, tiling channels, and stainless steel food production surfaces.</p>
+                    <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning,%20I'm%20inquiring%20about%20Kitchen%20Sanitization." target="_blank" class="btn-card-routing">Request Quote <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Item 4: Industrial Carpet & Rug Restorations -->
+        <div class="tilt-card-wrapper">
+            <div class="service-3d-card">
+                <div class="card-graphic-frame">
+                    <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=600" alt="Carpet Extraction">
+                    <div class="graphic-overlay"></div>
+                </div>
+                <div class="card-body-specs">
+                    <div class="service-icon-marker"><i class="fa-solid fa-rug"></i></div>
+                    <h2 class="service-heading">Carpet Scrubbing & Extraction</h2>
+                    <p class="service-detail-text">Heavy-traffic pile washing that lifts ground-in dirt out of delicate fibers, using extraction vacuums and dry blowing modules.</p>
+                    <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning,%20I'm%20inquiring%20about%20Carpet%20Extraction." target="_blank" class="btn-card-routing">Request Quote <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- 3D Parallax Tracking Component Engine -->
+    <script>
+        const cards = document.querySelectorAll('.service-3d-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // x coordinate inside the element
+                const y = e.clientY - rect.top;  // y coordinate inside the element
+
+                const cardWidth = rect.width;
+                const cardHeight = rect.height;
+
+                // Calculate tilt angle rotation factors (-10deg to 10deg bounds)
+                const rotateX = ((y / cardHeight) - 0.5) * -20;
+                const rotateY = ((x / cardWidth) - 0.5) * 20;
+
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                // Reset card smoothly back to zero resting plane positioning
+                card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        });
+    </script>
+</body>
+</html>
 
