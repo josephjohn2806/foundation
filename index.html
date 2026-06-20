@@ -5,451 +5,354 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JB Cleaning Company | Premium Cleaning Services Kenya</title>
     
+    <!-- Google Fonts for the exact Serif vs Sans-Serif contrast in the video -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary-color: #d4a373; /* Sophisticated gold/earthy accent */
-            --dark-bg: #121212;
-            --card-bg: #1a1a1a;
-            --light-text: #f4f1de;
-            --transition-smooth: all 0.5s ease-in-out;
+            --brand-gold: #f1b827; /* Matches the exact warm golden accent in the video */
+            --text-white: #ffffff;
+            --text-muted: #e0e0e0;
+            --bg-dark: #121212;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: var(--light-text);
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
-        /* Fixed Top Banner Contact Details */
-        .top-banner {
-            background-color: #0a0a0a;
+        /* 1:1 Video Match - Top Translucent Utility Bar */
+        .utility-bar {
+            background: rgba(0, 0, 0, 0.4);
             display: flex;
-            justify-content: space-between;
-            padding: 10px 40px;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 24px;
             font-size: 0.85rem;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #222;
-            opacity: 0.8;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: absolute;
+            width: 100%;
+            z-index: 100;
+            letter-spacing: 0.5px;
         }
 
-        .top-banner a {
-            color: var(--light-text);
+        .utility-bar a {
+            color: var(--text-white);
             text-decoration: none;
-            transition: color 0.3s;
+            opacity: 0.9;
         }
 
-        .top-banner a:hover {
-            color: var(--primary-color);
+        .utility-bar .divider {
+            opacity: 0.3;
+            margin: 0 5px;
         }
 
-        /* Navigation Bar */
+        /* Navbar Layout with Golden Silhouette Brand Icon */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 25px 40px;
+            padding: 70px 24px 20px 24px; /* Space out below the absolute utility bar */
             position: absolute;
             width: 100%;
-            z-index: 10;
+            z-index: 90;
         }
 
-        .brand-name {
-            font-size: 1.6rem;
-            font-weight: bold;
-            letter-spacing: 3px;
-            color: var(--light-text);
-        }
-
-        .menu-toggle {
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .menu-toggle:hover {
-            color: var(--primary-color);
-        }
-
-        /* Hero Section with Dark Mask Overlay */
-        .hero {
-            position: relative;
-            height: 95vh;
+        .brand-container {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1600') no-repeat center center/cover;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(18, 18, 18, 1));
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 700px;
-            padding: 20px;
-        }
-
-        .tagline {
-            color: var(--primary-color);
-            letter-spacing: 4px;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .main-title {
-            font-size: 3.5rem;
-            font-weight: 300;
-            margin-bottom: 25px;
-            line-height: 1.2;
-            letter-spacing: 1px;
-        }
-
-        .hero-text {
-            font-size: 1.15rem;
-            line-height: 1.7;
-            opacity: 0.85;
-            margin-bottom: 35px;
-            font-weight: 300;
-        }
-
-        /* Core Button Styling */
-        .btn {
-            padding: 16px 45px;
-            border: none;
-            border-radius: 30px;
-            font-weight: bold;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: var(--transition-smooth);
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: #121212;
-        }
-
-        .btn-primary:hover {
-            background-color: #b58353;
-            color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(212, 163, 115, 0.2);
-        }
-
-        /* Features Section with Smooth Carousel Transition */
-        .features {
-            padding: 100px 20px;
-            text-align: center;
-            background-color: var(--card-bg);
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            margin-bottom: 50px;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        .carousel-container {
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-            height: 220px;
-        }
-
-        .carousel-slide {
-            position: absolute;
-            width: 100%;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            transform: scale(0.96);
-            transition: var(--transition-smooth);
-            visibility: hidden;
-        }
-
-        .carousel-slide.active {
-            opacity: 1;
-            transform: scale(1);
-            visibility: visible;
-        }
-
-        .feature-icon {
-            font-size: 3.5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .carousel-slide h3 {
-            font-size: 1.4rem;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
-
-        .carousel-slide p {
-            font-size: 1.05rem;
-            line-height: 1.6;
-            opacity: 0.75;
-            font-weight: 300;
-        }
-
-        .carousel-dots {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
             gap: 10px;
         }
 
-        .dot {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            background-color: #444;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        /* Mimics the stylized animal/lion line art with a clean cleaning variant icon */
+        .brand-logo-svg {
+            color: var(--brand-gold);
+            font-size: 2.2rem;
         }
 
-        .dot.active {
-            background-color: var(--primary-color);
+        .brand-text {
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Booking Overlay Modal */
-        .modal {
-            display: none; 
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 100;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(8px);
+        .brand-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: 0.5px;
         }
 
-        .modal-content {
-            background: #1c1c1c;
-            padding: 45px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            border: 1px solid #2a2a2a;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px; right: 25px;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #888;
-            transition: color 0.3s;
-        }
-
-        .close-btn:hover {
-            color: var(--light-text);
-        }
-
-        .modal h2 {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-        }
-
-        .form-group {
-            margin-bottom: 22px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--primary-color);
-            font-size: 0.85rem;
-            letter-spacing: 1px;
+        .brand-subtitle {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
+            color: var(--text-white);
+            opacity: 0.8;
+            margin-top: 2px;
         }
 
-        .form-group input, .form-group select {
+        .hamburger-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .hamburger-line {
+            width: 28px;
+            height: 2px;
+            background-color: var(--text-white);
+            transition: 0.3s;
+        }
+
+        /* Full Screen Hero with dark background portrait asset fit */
+        .hero-viewport {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 120px; /* Accounts for bottom cookie notification space */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 40%, rgba(18,18,18,0.95) 95%), 
+                        url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1000') no-repeat center center/cover;
+        }
+
+        .hero-inner-content {
+            padding: 0 24px;
+            max-width: 550px;
+            z-index: 10;
+        }
+
+        /* Yellow/Gold subhead styling verbatim from the video video */
+        .hero-tagline {
+            color: var(--brand-gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        /* Large custom serif layout matching 'Celebrating 21 years' formatting */
+        .hero-main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            font-size: 0.92rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        /* Rounded gold accent trigger actions button template */
+        .btn-gold-action {
+            background-color: var(--brand-gold);
+            color: #000000;
+            border: none;
+            padding: 12px 28px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            border-radius: 25px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-gold-action:hover {
+            background-color: #dba41a;
+            transform: translateY(-1px);
+        }
+
+        /* Verbatim Copy & Placement of the Bottom Sticky Cookie Banner */
+        .cookie-consent-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            padding: 14px;
-            background: #262626;
-            border: 1px solid #333;
-            color: white;
-            border-radius: 6px;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s;
+            background-color: #ffffff;
+            color: #333333;
+            padding: 16px 24px;
+            z-index: 1000;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
         }
 
-        .form-group input:focus, .form-group select:focus {
-            border-color: var(--primary-color);
+        .cookie-text {
+            margin-bottom: 12px;
         }
 
-        .btn-submit {
-            width: 100%;
-            background-color: var(--primary-color);
+        .cookie-text a {
+            color: #333333;
+            text-decoration: underline;
+        }
+
+        .cookie-actions-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .btn-cookie-accept {
+            background-color: #121212;
+            color: #ffffff;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .trusted-badge-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #2e7d32; /* Secure verification green color code */
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* Slide-Out Navigation Drawer Drawer */
+        .side-drawer-nav {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 85%; max-width: 360px; height: 100%;
+            background-color: #ffffff;
             color: #121212;
-            margin-top: 10px;
+            z-index: 2000;
+            padding: 40px 24px;
+            transition: right 0.4s ease;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.3);
         }
 
-        .btn-submit:hover {
-            background-color: #b58353;
-            color: #fff;
+        .side-drawer-nav.open {
+            right: 0;
         }
 
-        /* Responsive Design tweaks */
-        @media (max-width: 768px) {
-            .top-banner { display: none; }
-            .main-title { font-size: 2.4rem; }
-            .navbar { padding: 20px; }
-            .modal-content { padding: 30px 20px; }
+        .close-drawer-trigger {
+            text-align: right;
+            font-size: 1.8rem;
+            cursor: pointer;
+            margin-bottom: 40px;
+            color: #666;
+        }
+
+        .nav-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .nav-links-list a {
+            color: #121212;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-    <div class="top-banner">
-        <div><i class="fa-solid fa-phone"></i> +254 (0) 700 000000</div>
-        <div><i class="fa-solid fa-envelope"></i> <a href="mailto:info@jbcleaning.co.ke">info@jbcleaning.co.ke</a></div>
+    <!-- Translucent Global Header strip -->
+    <div class="utility-bar">
+        <a href="tel:+254700000000"><i class="fa-solid fa-phone"></i> +254 (0)700 000 000</a>
+        <span class="divider">|</span>
+        <a href="mailto:info@jbcleaning.co.ke">info@jbcleaning.co.ke</a>
     </div>
 
+    <!-- Main Dynamic Header Platform -->
     <header class="navbar">
-        <div class="logo">
-            <span class="brand-name">JB CLEANING</span>
+        <div class="brand-container">
+            <!-- Outline Silhouette Stylized Brush Icon to match the Safari Line Art Asset -->
+            <i class="fa-solid fa-broom-ball brand-logo-svg"></i>
+            <div class="brand-text">
+                <span class="brand-title">JB Cleaning</span>
+                <span class="brand-subtitle">Premium Care</span>
+            </div>
         </div>
-        <div class="menu-toggle" id="mobile-menu">
-            <i class="fa-solid fa-bars"></i>
+        <div class="hamburger-menu" onclick="toggleNavigationMenu(true)">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h3 class="tagline">YOUR SPACE, YOUR WAY</h3>
-            <h1 class="main-title">Celebrating Immaculate Spaces</h1>
-            <p class="hero-text">
-                Providing top-tier, trustworthy cleaning solutions across Kenya. 
-                We restore and maintain your home and commercial environments with unmatched dedication and attention to premium detail.
+    <!-- Visual Viewport Area matching the layout context -->
+    <section class="hero-viewport">
+        <div class="hero-inner-content">
+            <p class="hero-tagline">Your Space, Your Way</p>
+            <h1 class="hero-main-title">Celebrating Immaculate Spaces</h1>
+            <p class="hero-description">
+                Since inception, we've had the privilege of transforming Kenya's finest residences and corporate properties into pristine environments. We take care of every corner, property partner, and friend who joins our journey.
             </p>
-            <button class="btn btn-primary" onclick="toggleModal()">BOOK A CLEANING</button>
+            <button class="btn-gold-action">Meet Our Team</button>
         </div>
     </section>
 
-    <section class="features">
-        <h2 class="section-title">Why Choose JB Cleaning?</h2>
-        <div class="carousel-container">
-            <div class="carousel-slide active">
-                <i class="fa-solid fa-handshake feature-icon"></i>
-                <h3>CONVENIENCE</h3>
-                <p>When it comes to managing your spaces, we work completely around your schedule, ensuring fluid and zero-hassle service executions.</p>
-            </div>
-            <div class="carousel-slide">
-                <i class="fa-solid fa-shield-halved feature-icon"></i>
-                <h3>TRUSTED PROFESSIONALS</h3>
-                <p>Our entire cleaning operations staff undergo comprehensive background checks and rigorous, hospitality-grade training pipelines.</p>
-            </div>
-            <div class="carousel-slide">
-                <i class="fa-solid fa-sparkles feature-icon"></i>
-                <h3>ECO-FRIENDLY PRODUCTS</h3>
-                <p>We leverage high-performance, non-toxic cleaning agents that ensure safe, sparkling environments for families and corporate staff alike.</p>
-            </div>
+    <!-- Floating Cookie Verification Drawer verbatim from video layout -->
+    <div class="cookie-consent-banner" id="cookieBanner">
+        <div class="cookie-text">
+            We use cookies to improve your experience on our website. Read more in our <a href="#">Privacy policy</a>.
         </div>
-        <div class="carousel-dots">
-            <span class="dot active" onclick="currentSlide(0)"></span>
-            <span class="dot" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-        </div>
-    </section>
-
-    <div class="modal" id="bookingModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="toggleModal()">&times;</span>
-            <h2>Enquire or Book Now</h2>
-            <form id="enquiryForm" action="/api/enquiry" method="POST">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
-                </div>
-                <div class="form-group">
-                    <label for="email">Your Email Address</label>
-                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
-                </div>
-                <div class="form-group">
-                    <label for="service">Service Required</label>
-                    <select id="service" name="service">
-                        <option value="residential">Residential Cleaning</option>
-                        <option value="commercial">Commercial/Office Cleaning</option>
-                        <option value="deep-clean">Deep / Post-Construction Clean</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-submit">SUBMIT ENQUIRY</button>
-            </form>
+        <div class="cookie-actions-row">
+            <button class="btn-cookie-accept" onclick="acceptCookieCompliance()">Accept</button>
+            <div class="trusted-badge-wrapper">
+                <i class="fa-solid fa-circle-check"></i> Trusted Business
+            </div>
         </div>
     </div>
 
+    <!-- Sliding Sidebar Menu -->
+    <nav class="side-drawer-nav" id="sideDrawer">
+        <div class="close-drawer-trigger" onclick="toggleNavigationMenu(false)">&times;</div>
+        <ul class="nav-links-list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Team</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Runtime interaction code engine -->
     <script>
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.dot');
-
-        function currentSlide(index) {
-            // Remove active classes from current layout nodes
-            slides[currentSlideIndex].classList.remove('active');
-            dots[currentSlideIndex].classList.remove('active');
-            
-            // Re-assign target slide indicator pointer
-            currentSlideIndex = index;
-            
-            // Append target structural activation hooks
-            slides[currentSlideIndex].classList.add('active');
-            dots[currentSlideIndex].classList.add('active');
-        }
-
-        // Automatic carousel rotation loop setup 
-        setInterval(() => {
-            let nextIndex = (currentSlideIndex + 1) % slides.length;
-            currentSlide(nextIndex);
-        }, 5000);
-
-        // Toggle state context window view for overlay dialog window
-        function toggleModal() {
-            const modal = document.getElementById('bookingModal');
-            if (modal.style.display === 'flex') {
-                modal.style.display = 'none';
+        function toggleNavigationMenu(openState) {
+            const drawer = document.getElementById('sideDrawer');
+            if (openState) {
+                drawer.classList.add('open');
             } else {
-                modal.style.display = 'flex';
+                drawer.classList.remove('open');
             }
         }
 
-        // Prevent empty form test redirection on form execution triggers
-        document.getElementById('enquiryForm').addEventListener('submit', function(e) {
-            // Uncomment the line below when hooking up your live API layer endpoint handles
-            // e.preventDefault(); 
-            console.log("Form tracking payload intercepted successfully.");
-        });
+        function acceptCookieCompliance() {
+            const banner = document.getElementById('cookieBanner');
+            banner.style.display = 'none';
+        }
     </script>
 </body>
 </html>
+
 
