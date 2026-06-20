@@ -136,7 +136,6 @@
             opacity: 1;
             transform: translate3d(0, 0, 0) rotateX(0deg);
         }
-        /* Staggered entry transitions */
         .fullscreen-menu.open .menu-links-container li:nth-child(1) { transition-delay: 0.2s; }
         .fullscreen-menu.open .menu-links-container li:nth-child(2) { transition-delay: 0.3s; }
         .fullscreen-menu.open .menu-links-container li:nth-child(3) { transition-delay: 0.4s; }
@@ -162,8 +161,8 @@
             display: flex;
             align-items: flex-end;
             padding-bottom: 140px;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 40%, rgba(18,18,18,0.95) 95%), 
-                        url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1000') no-repeat center center/cover;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 30%, rgba(18,18,18,0.95) 95%), 
+                        url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1200') no-repeat center center/cover;
             perspective: var(--perspective);
         }
         .hero-inner-content { padding: 0 24px; max-width: 550px; z-index: 10; transform-style: preserve-3d; }
@@ -171,7 +170,6 @@
         .hero-main-title { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 400; margin-bottom: 20px; }
         .hero-description { font-size: 0.92rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 25px; }
         
-        /* 3D Action Button Toggle */
         .btn-gold-action {
             background-color: var(--brand-gold); color: #000; border: none; padding: 12px 28px;
             font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px; border-radius: 25px; cursor: pointer; text-transform: uppercase;
@@ -188,7 +186,6 @@
         .section-label { color: var(--brand-gold); font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; }
         .section-headline { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 600; margin-bottom: 40px; }
         
-        /* 3D Tilt Process Cards */
         .process-card { 
             background: #fff; 
             border: 1px solid #eaeaea; 
@@ -208,22 +205,23 @@
         .process-card h4 { font-size: 1.1rem; text-transform: uppercase; margin-bottom: 10px; font-weight: 500; }
         .process-card p { font-size: 0.9rem; color: #666; line-height: 1.5; }
 
-        /* ------------------ DESTINATIONS SLIDER CARDS ------------------ */
+        /* ------------------ SHOWCASE EXPANDED SLIDER IMAGES ------------------ */
         .destinations-section { padding: 60px 24px; text-align: center; background: var(--bg-dark); perspective: var(--perspective); }
         
-        /* Dynamic 3D Card Shifting */
         .destination-card {
-            position: relative; height: 400px; border-radius: 4px; overflow: hidden; margin-bottom: 20px;
+            position: relative; height: 380px; border-radius: 6px; overflow: hidden; margin-bottom: 25px;
             display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 20px;
             background-size: cover; background-position: center;
             transform-style: preserve-3d;
             transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .destination-card:hover {
-            transform: scale3d(1.02, 1.02, 1.02) rotateY(-5deg);
+            transform: scale3d(1.02, 1.02, 1.02) rotateY(-4deg);
         }
-        .dest-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.8) 100%); }
-        .dest-card-title { font-family: 'Playfair Display', serif; font-size: 2rem; position: relative; z-index: 5; margin-bottom: 15px; transform: translateZ(30px); }
+        .dest-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.85) 100%); }
+        .dest-card-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; position: relative; z-index: 5; margin-bottom: 8px; transform: translateZ(30px); text-shadow: 0 2px 4px rgba(0,0,0,0.6); }
+        .dest-card-desc { position: relative; z-index: 5; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px; transform: translateZ(25px); }
+        
         .btn-outline-explore {
             position: relative; z-index: 5; align-self: center; background: transparent; border: 1px solid #fff;
             color: #fff; padding: 10px 30px; border-radius: 20px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
@@ -231,7 +229,8 @@
             transition: all 0.3s;
         }
         .btn-outline-explore:hover {
-            background-color: var(--text-white);
+            background-color: var(--brand-gold);
+            border-color: var(--brand-gold);
             color: var(--bg-dark);
             transform: translateZ(40px);
         }
@@ -299,7 +298,7 @@
         </div>
     </header>
 
-    <!-- Fullscreen 3D Navigation Overlay Context -->
+    <!-- Fullscreen 3D Navigation Overlay -->
     <nav class="fullscreen-menu" id="fullscreenNav">
         <ul class="menu-links-container">
             <li><a href="#" onclick="toggleMenu()">Home</a></li>
@@ -315,7 +314,7 @@
             <p class="hero-tagline">Your Space, Your Way</p>
             <h1 class="hero-main-title">Celebrating Pristine Spaces</h1>
             <p class="hero-description">
-                Since inception, we've had the privilege of transforming Kenya's finest residences and corporate properties into immaculate environments. We are deeply grateful to protect your comfort.
+                Since inception, we've had the privilege of transforming Kenya's finest residences, corporate environments, and structural spaces into spotless ecosystems.
             </p>
             <button class="btn-gold-action">Meet Our Team</button>
         </div>
@@ -329,39 +328,57 @@
         <div class="process-card">
             <span class="process-number">01</span>
             <h4>First Contact</h4>
-            <p>Complete the enquiry form or call us. Share your spatial maintenance needs!</p>
+            <p>Complete the enquiry form or call us. Share your structural deep maintenance specs!</p>
         </div>
 
         <div class="process-card">
             <span class="process-number">02</span>
             <h4>We Help</h4>
-            <p>A property sanitation consultant will help you blueprint your custom walkthrough timelines.</p>
+            <p>A professional sanitation manager helps customize your ideal home or corporate routine package.</p>
         </div>
 
         <div class="process-card">
             <span class="process-number">03</span>
             <h4>Tailor-Made</h4>
-            <p>Receive premium cleaning checklists explicitly structured around your personal operations.</p>
+            <p>Enjoy spotless spaces delivered by eco-friendly tools safely managed around your timeline.</p>
         </div>
     </section>
 
     <!-- Interactive Showcase Slider Layout Frame -->
     <section class="destinations-section">
-        <p class="section-label">Explore Solutions</p>
-        <h2 class="section-headline">Top Clean Environments</h2>
+        <p class="section-label">Our Service Focus</p>
+        <h2 class="section-headline">Deep Cleaning Solutions</h2>
 
-        <!-- Card Asset Unit 1 -->
-        <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=600');">
+        <!-- Slide Asset Unit 1: Toilets & Restrooms -->
+        <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=600');">
             <div class="dest-overlay"></div>
-            <h3 class="dest-card-title">Residential Clean</h3>
-            <button class="btn-outline-explore">Explore</button>
+            <h3 class="dest-card-title">Toilet & Restroom Deep Clean</h3>
+            <p class="dest-card-desc">Complete chemical descaling, stain extractions, and hospital-grade sanitization floors.</p>
+            <button class="btn-outline-explore">Book Now</button>
         </div>
 
-        <!-- Card Asset Unit 2 -->
-        <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600');">
+        <!-- Slide Asset Unit 2: Sofas & Upholstery -->
+        <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=600');">
             <div class="dest-overlay"></div>
-            <h3 class="dest-card-title">Corporate Offices</h3>
-            <button class="btn-outline-explore">Explore</button>
+            <h3 class="dest-card-title">Luxury Sofa Detailing</h3>
+            <p class="dest-card-desc">Premium extraction machines targeting hidden dust mites, deep spills, and fabric restoration.</p>
+            <button class="btn-outline-explore">Book Now</button>
+        </div>
+
+        <!-- Slide Asset Unit 3: Carpet Extraction -->
+        <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1558317374-067fb5f30001?q=80&w=600');">
+            <div class="dest-overlay"></div>
+            <h3 class="dest-card-title">Carpet Scrubbing & Drying</h3>
+            <p class="dest-card-desc">High-power industrial shampooers designed to safely lift heavy-traffic stains from delicate weaves.</p>
+            <button class="btn-outline-explore">Book Now</button>
+        </div>
+
+        <!-- Slide Asset Unit 4: General Full Deep Cleaning -->
+        <div class="destination-card" style="background-image: url('https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=600');">
+            <div class="dest-overlay"></div>
+            <h3 class="dest-card-title">Whole Property Deep Clean</h3>
+            <p class="dest-card-desc">From ceiling corners and window glass railings down to baseboards and pristine kitchen details.</p>
+            <button class="btn-outline-explore">Book Now</button>
         </div>
     </section>
 
@@ -372,7 +389,7 @@
                 <span>Commercial Care</span> <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="accordion-content">
-                <p>Deep disinfection, post-construction layouts, routine business floor polishing, and premium glass cleaning setups across commercial hubs.</p>
+                <p>Deep disinfection, post-construction turnovers, corporate floor shining routines, and glass wall structures across corporate cities.</p>
             </div>
         </div>
 
@@ -381,11 +398,11 @@
                 <span>Residential Care</span> <i class="fa-solid fa-chevron-down"></i>
             </div>
             <div class="accordion-content">
-                <p>Complete moving-in turnovers, deep upholstery treatments, detailed kitchen scrubbing, and structural estate housekeeping plans.</p>
+                <p>Complete moving-out cleaning, sofa steaming packages, heavy carpet drying, and detailed luxury home structural upkeep plans.</p>
             </div>
         </div>
 
-        <!-- Explicit Media Asset Location Details Block -->
+        <!-- Contact Information Detail Row Area -->
         <div class="footer-contacts">
             <div class="contact-row">
                 <i class="fa-solid fa-location-dot"></i>
@@ -401,7 +418,7 @@
             </div>
         </div>
 
-        <!-- 3D Monochrome Icon Array Layer -->
+        <!-- 3D Monochrome Social Icons Strip -->
         <div class="social-media-strip">
             <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
@@ -411,7 +428,7 @@
         </div>
     </footer>
 
-    <!-- Cookie Compliance Notification Platform -->
+    <!-- Cookie Consent Banner Banner Layout Frame -->
     <div class="cookie-consent-banner" id="cookieBanner">
         <div class="cookie-text">
             We use cookies to improve your experience on our website. Read more in our <a href="#">Privacy policy</a>.
@@ -459,6 +476,7 @@
     </script>
 </body>
 </html>
+
 
 
 
