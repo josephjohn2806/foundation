@@ -1,1 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JB Cleaning Company | Premium Cleaning Services Kenya</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #d4a373; /* Sophisticated gold/earthy accent */
+            --dark-bg: #121212;
+            --card-bg: #1a1a1a;
+            --light-text: #f4f1de;
+            --transition-smooth: all 0.5s ease-in-out;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Fixed Top Banner Contact Details */
+        .top-banner {
+            background-color: #0a0a0a;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 40px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #222;
+            opacity: 0.8;
+        }
+
+        .top-banner a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .top-banner a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 40px;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .brand-name {
+            font-size: 1.6rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: var(--light-text);
+        }
+
+        .menu-toggle {
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .menu-toggle:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section with Dark Mask Overlay */
+        .hero {
+            position: relative;
+            height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1600') no-repeat center center/cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(18, 18, 18, 1));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            padding: 20px;
+        }
+
+        .tagline {
+            color: var(--primary-color);
+            letter-spacing: 4px;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 25px;
+            line-height: 1.2;
+            letter-spacing: 1px;
+        }
+
+        .hero-text {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            opacity: 0.85;
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        /* Core Button Styling */
+        .btn {
+            padding: 16px 45px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #121212;
+        }
+
+        .btn-primary:hover {
+            background-color: #b58353;
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 163, 115, 0.2);
+        }
+
+        /* Features Section with Smooth Carousel Transition */
+        .features {
+            padding: 100px 20px;
+            text-align: center;
+            background-color: var(--card-bg);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .carousel-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            height: 220px;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            transform: scale(0.96);
+            transition: var(--transition-smooth);
+            visibility: hidden;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            visibility: visible;
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .carousel-slide h3 {
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .carousel-slide p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            opacity: 0.75;
+            font-weight: 300;
+        }
+
+        .carousel-dots {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #444;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--primary-color);
+        }
+
+        /* Booking Overlay Modal */
+        .modal {
+            display: none; 
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: #1c1c1c;
+            padding: 45px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px; right: 25px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--light-text);
+        }
+
+        .modal h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px;
+            background: #262626;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--primary-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: #121212;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #b58353;
+            color: #fff;
+        }
+
+        /* Responsive Design tweaks */
+        @media (max-width: 768px) {
+            .top-banner { display: none; }
+            .main-title { font-size: 2.4rem; }
+            .navbar { padding: 20px; }
+            .modal-content { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-banner">
+        <div><i class="fa-solid fa-phone"></i> +254 (0) 700 000000</div>
+        <div><i class="fa-solid fa-envelope"></i> <a href="mailto:info@jbcleaning.co.ke">info@jbcleaning.co.ke</a></div>
+    </div>
+
+    <header class="navbar">
+        <div class="logo">
+            <span class="brand-name">JB CLEANING</span>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h3 class="tagline">YOUR SPACE, YOUR WAY</h3>
+            <h1 class="main-title">Celebrating Immaculate Spaces</h1>
+            <p class="hero-text">
+                Providing top-tier, trustworthy cleaning solutions across Kenya. 
+                We restore and maintain your home and commercial environments with unmatched dedication and attention to premium detail.
+            </p>
+            <button class="btn btn-primary" onclick="toggleModal()">BOOK A CLEANING</button>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2 class="section-title">Why Choose JB Cleaning?</h2>
+        <div class="carousel-container">
+            <div class="carousel-slide active">
+                <i class="fa-solid fa-handshake feature-icon"></i>
+                <h3>CONVENIENCE</h3>
+                <p>When it comes to managing your spaces, we work completely around your schedule, ensuring fluid and zero-hassle service executions.</p>
+            </div>
+            <div class="carousel-slide">
+                <i class="fa-solid fa-shield-halved feature-icon"></i>
+                <h3>TRUSTED PROFESSIONALS</h3>
+                <p>Our entire cleaning operations staff undergo comprehensive background checks and rigorous, hospitality-grade training pipelines.</p>
+            </div>
+            <div class="carousel-slide">
+                <i class="fa-solid fa-sparkles feature-icon"></i>
+                <h3>ECO-FRIENDLY PRODUCTS</h3>
+                <p>We leverage high-performance, non-toxic cleaning agents that ensure safe, sparkling environments for families and corporate staff alike.</p>
+            </div>
+        </div>
+        <div class="carousel-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+    </section>
+
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="toggleModal()">&times;</span>
+            <h2>Enquire or Book Now</h2>
+            <form id="enquiryForm" action="/api/enquiry" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                </div>
+                <div class="form-group">
+                    <label for="service">Service Required</label>
+                    <select id="service" name="service">
+                        <option value="residential">Residential Cleaning</option>
+                        <option value="commercial">Commercial/Office Cleaning</option>
+                        <option value="deep-clean">Deep / Post-Construction Clean</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-submit">SUBMIT ENQUIRY</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function currentSlide(index) {
+            // Remove active classes from current layout nodes
+            slides[currentSlideIndex].classList.remove('active');
+            dots[currentSlideIndex].classList.remove('active');
+            
+            // Re-assign target slide indicator pointer
+            currentSlideIndex = index;
+            
+            // Append target structural activation hooks
+            slides[currentSlideIndex].classList.add('active');
+            dots[currentSlideIndex].classList.add('active');
+        }
+
+        // Automatic carousel rotation loop setup 
+        setInterval(() => {
+            let nextIndex = (currentSlideIndex + 1) % slides.length;
+            currentSlide(nextIndex);
+        }, 5000);
+
+        // Toggle state context window view for overlay dialog window
+        function toggleModal() {
+            const modal = document.getElementById('bookingModal');
+            if (modal.style.display === 'flex') {
+                modal.style.display = 'none';
+            } else {
+                modal.style.display = 'flex';
+            }
+        }
+
+        // Prevent empty form test redirection on form execution triggers
+        document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+            // Uncomment the line below when hooking up your live API layer endpoint handles
+            // e.preventDefault(); 
+            console.log("Form tracking payload intercepted successfully.");
+        });
+    </script>
+</body>
+</html>
 
