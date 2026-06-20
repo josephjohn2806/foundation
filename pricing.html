@@ -35,7 +35,7 @@
             padding-bottom: 60px;
         }
 
-        /* ------------------ NAVIGATION HEADER & HAMBURGER ------------------ */
+        /* ------------------ NAVIGATION HEADER ------------------ */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -43,64 +43,81 @@
             padding: 30px 24px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
-            z-index: 100;
+            z-index: 200;
         }
         .brand-container { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
         .brand-logo-svg { color: var(--brand-gold); font-size: 2rem; }
         .brand-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; }
         
-        /* Mobile Hamburger Trigger Toggle Button */
         .menu-toggle-btn {
             background: none;
             border: none;
             color: var(--text-white);
             font-size: 1.5rem;
             cursor: pointer;
-            z-index: 150;
+            z-index: 250;
             transition: color 0.3s;
         }
-        .menu-toggle-btn:hover {
-            color: var(--brand-gold);
-        }
 
-        /* Fullscreen Glassmorphism Navigation Overlay */
+        /* Fullscreen Navigation Overlay Layout & Animation System */
         .nav-fullscreen-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background: rgba(18, 18, 18, 0.8);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            z-index: 120;
+            background: rgba(18, 18, 18, 0.98);
+            z-index: 150;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 25px;
+            gap: 35px;
+            
+            /* Initial Hidden State Animation Config */
             opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                        visibility 0.5s;
         }
+        
+        /* Active State Reveal trigger */
         .nav-fullscreen-overlay.active {
             opacity: 1;
-            pointer-events: auto;
-        }
-        .nav-overlay-link {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--text-white);
-            text-decoration: none;
-            letter-spacing: 1px;
-            transition: color 0.3s, transform 0.3s;
-            transform: translateY(15px);
-        }
-        .nav-fullscreen-overlay.active .nav-overlay-link {
+            visibility: visible;
             transform: translateY(0);
         }
+        
+        .nav-overlay-link {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 400;
+            
+            /* Staggered text link push up animation setup */
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Trigger Link animations step-by-step when parent menu gets active */
+        .nav-fullscreen-overlay.active .nav-overlay-link {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Delays for staggered list flow effect */
+        .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(1) { transition-delay: 0.10s; }
+        .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(2) { transition-delay: 0.18s; }
+        .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(3) { transition-delay: 0.26s; }
+        .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(4) { transition-delay: 0.34s; }
+
         .nav-overlay-link:hover {
-            color: var(--brand-gold);
+            opacity: 0.7;
         }
 
         /* ------------------ HEADER INTRODUCTION ------------------ */
@@ -121,7 +138,6 @@
             perspective: var(--perspective);
         }
 
-        /* The 3D Card wrapper providing the tilt frame base */
         .tilt-card-wrapper {
             width: 100%;
             perspective: var(--perspective);
@@ -162,7 +178,6 @@
             transform: translateZ(20px);
         }
 
-        /* Typography Sub-layers Lifted into 3D Space */
         .plan-name { 
             font-family: 'Playfair Display', serif; 
             font-size: 1.6rem; 
@@ -222,34 +237,31 @@
 </head>
 <body>
 
-    <!-- Small Navigation Bar Frame -->
     <nav class="navbar">
         <a href="index.html" class="brand-container">
             <i class="fa-solid fa-broom-ball brand-logo-svg"></i>
             <span class="brand-title">JB Cleaning</span>
         </a>
-        <button class="menu-toggle-btn" id="menuToggle" aria-label="Toggle Navigation Menu">
+        <button class="menu-toggle-btn" id="menuToggle">
             <i class="fa-solid fa-bars" id="menuIcon"></i>
         </button>
     </nav>
 
-    <!-- Fullscreen Hamburger Mobile Navigation Overlay -->
+    <!-- Fullscreen Overlay Content Frame Layout -->
     <div class="nav-fullscreen-overlay" id="navOverlay">
         <a href="index.html" class="nav-overlay-link">Home</a>
         <a href="services.html" class="nav-overlay-link">Services</a>
-        <a href="pricing.html" class="nav-overlay-link" style="color: var(--brand-gold);">Pricing</a>
+        <a href="pricing.html" class="nav-overlay-link" style="color: var(--brand-gold);">Pricing Plans</a>
+        <a href="index.html#contact" class="nav-overlay-link">Get In Touch</a>
     </div>
 
-    <!-- Heading Block -->
     <header class="pricing-header-section">
         <p class="pricing-tag">Transparent Rates</p>
         <h1 class="pricing-title">Our Cleaning Packages</h1>
         <p class="pricing-subtitle">Interact with the panels below to view custom deep restoration care investments in dynamic 3D depth layers.</p>
     </header>
 
-    <!-- Responsive Cards List Column -->
     <main class="pricing-grid">
-        
         <!-- Package 1 -->
         <div class="tilt-card-wrapper">
             <div class="pricing-card">
@@ -268,7 +280,7 @@
             </div>
         </div>
 
-        <!-- Package 2: Premium Starred -->
+        <!-- Package 2 -->
         <div class="tilt-card-wrapper">
             <div class="pricing-card featured-card">
                 <span class="featured-badge">Most Popular</span>
@@ -304,67 +316,50 @@
                 <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning%20Company,%20I%20want%20to%20inquire%20about%20the%20Extraction%20Add-on%20Package." target="_blank" class="btn-plan-action">Get Quote</a>
             </div>
         </div>
-
     </main>
 
-    <!-- Hamburger & Interactive 3D Parallax Tracking Component Engine -->
     <script>
-        // 1. Hamburger Overlay Toggle Engine
         const menuToggle = document.getElementById('menuToggle');
         const navOverlay = document.getElementById('navOverlay');
         const menuIcon = document.getElementById('menuIcon');
 
         menuToggle.addEventListener('click', () => {
             const isActive = navOverlay.classList.toggle('active');
-            
-            // Switch icons context based on open status
             if (isActive) {
                 menuIcon.className = 'fa-solid fa-xmark';
-                document.body.style.overflow = 'hidden'; // Stop background scrolling
+                document.body.style.overflow = 'hidden';
             } else {
                 menuIcon.className = 'fa-solid fa-bars';
                 document.body.style.overflow = '';
             }
         });
 
-        // 2. Hybrid Mouse & Mobile Touch 3D Tracking Engine
+        // 3D Motion System
         const cards = document.querySelectorAll('.pricing-card');
-
         function handleMove(e, card) {
             const rect = card.getBoundingClientRect();
-            
-            // Handle both desktop pointer coordinates and mobile multi-touch targets
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
             const x = clientX - rect.left;
             const y = clientY - rect.top;
-
             const cardWidth = rect.width;
             const cardHeight = rect.height;
-
-            // Constrain tilt rotation variables safely between -12 and 12 deg
             const rotateX = ((y / cardHeight) - 0.5) * -16;
             const rotateY = ((x / cardWidth) - 0.5) * 16;
-
             card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
         }
-
         function handleReset(card) {
             card.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
         }
-
         cards.forEach(card => {
-            // Desktop Mouse Event Support
             card.addEventListener('mousemove', (e) => handleMove(e, card));
             card.addEventListener('mouseleave', () => handleReset(card));
-
-            // Mobile Touch Screen Support with passive configuration
             card.addEventListener('touchmove', (e) => handleMove(e, card), { passive: true });
             card.addEventListener('touchend', () => handleReset(card));
         });
     </script>
 </body>
 </html>
+
 
 
