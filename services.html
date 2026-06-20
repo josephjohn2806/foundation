@@ -32,7 +32,9 @@
             background-color: var(--bg-dark);
             color: var(--text-white);
             overflow-x: hidden;
-            padding-bottom: 60px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* ------------------ NAVIGATION HEADER ------------------ */
@@ -59,7 +61,7 @@
             transition: color 0.3s;
         }
 
-        /* Fullscreen Navigation Overlay Layout & Animation System */
+        /* Fullscreen Navigation Overlay */
         .nav-fullscreen-overlay {
             position: fixed;
             top: 0;
@@ -73,8 +75,6 @@
             justify-content: center;
             align-items: center;
             gap: 35px;
-            
-            /* Initial Hidden State Animation Config */
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
@@ -82,43 +82,27 @@
                         transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
                         visibility 0.5s;
         }
-        
-        /* Active State Reveal trigger */
         .nav-fullscreen-overlay.active {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
-        
         .nav-overlay-link {
             font-family: 'Playfair Display', serif;
             font-size: 2.4rem;
             color: var(--text-white);
             text-decoration: none;
             font-weight: 400;
-            
-            /* Staggered text link push up animation setup */
             transform: translateY(20px);
             opacity: 0;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
-                        opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        /* Trigger Link animations step-by-step when parent menu gets active */
-        .nav-fullscreen-overlay.active .nav-overlay-link {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        /* Delays for staggered list flow effect */
+        .nav-fullscreen-overlay.active .nav-overlay-link { transform: translateY(0); opacity: 1; }
         .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(1) { transition-delay: 0.10s; }
         .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(2) { transition-delay: 0.18s; }
         .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(3) { transition-delay: 0.26s; }
         .nav-fullscreen-overlay.active .nav-overlay-link:nth-child(4) { transition-delay: 0.34s; }
-
-        .nav-overlay-link:hover {
-            opacity: 0.7;
-        }
+        .nav-overlay-link:hover { opacity: 0.7; }
 
         /* ------------------ HEADER INTRODUCTION ------------------ */
         .services-intro-section {
@@ -136,14 +120,9 @@
             flex-direction: column;
             gap: 35px;
             perspective: var(--perspective);
+            flex: 1;
         }
-
-        .tilt-card-wrapper {
-            width: 100%;
-            perspective: var(--perspective);
-            transform-style: preserve-3d;
-        }
-
+        .tilt-card-wrapper { width: 100%; perspective: var(--perspective); transform-style: preserve-3d; }
         .service-3d-card {
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -154,81 +133,53 @@
             position: relative;
             will-change: transform;
         }
-        
-        .service-3d-card:hover {
-            border-color: rgba(241, 184, 39, 0.4);
-        }
+        .service-3d-card:hover { border-color: rgba(241, 184, 39, 0.4); }
 
-        .card-graphic-frame {
-            height: 220px;
-            position: relative;
-            overflow: hidden;
-            transform: translateZ(20px);
-        }
-        .card-graphic-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .service-3d-card:hover .card-graphic-frame img {
-            transform: scale(1.08);
-        }
-        .graphic-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, transparent 50%, rgba(18, 18, 18, 0.9) 100%);
-        }
+        .card-graphic-frame { height: 220px; position: relative; overflow: hidden; transform: translateZ(20px); }
+        .card-graphic-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .service-3d-card:hover .card-graphic-frame img { transform: scale(1.08); }
+        .graphic-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, transparent 50%, rgba(18, 18, 18, 0.9) 100%); }
 
-        .card-body-specs {
-            padding: 25px 20px;
-            transform: translateZ(40px);
-        }
-        
+        .card-body-specs { padding: 25px 20px; transform: translateZ(40px); }
         .service-icon-marker {
-            position: absolute;
-            top: -25px;
-            right: 25px;
-            background: var(--brand-gold);
-            color: #000;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 15px rgba(241, 184, 39, 0.3);
-            transform: translateZ(10px);
+            position: absolute; top: -25px; right: 25px; background: var(--brand-gold); color: #000;
+            width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; box-shadow: 0 4px 15px rgba(241, 184, 39, 0.3); transform: translateZ(10px);
         }
+        .service-heading { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 10px; font-weight: 500; }
+        .service-detail-text { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 20px; }
+        .btn-card-routing { display: inline-flex; align-items: center; gap: 8px; color: var(--brand-gold); text-decoration: none; font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; transition: gap 0.3s; }
+        .btn-card-routing:hover { gap: 15px; }
 
-        .service-heading {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            font-weight: 500;
+        /* ------------------ MINIMALIST PRESTIGE FOOTER ------------------ */
+        .site-footer {
+            padding: 60px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            background-color: #0f0f0f;
         }
-        .service-detail-text {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            line-height: 1.6;
+        .footer-socials-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
             margin-bottom: 20px;
         }
-
-        .btn-card-routing {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--brand-gold);
+        .social-icon-node {
+            color: var(--text-muted);
+            font-size: 1.3rem;
             text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: gap 0.3s;
+            transition: color 0.3s, transform 0.3s;
         }
-        .btn-card-routing:hover {
-            gap: 15px;
+        .social-icon-node:hover {
+            color: var(--brand-gold);
+            transform: translateY(-3px);
+        }
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
     </style>
 </head>
@@ -244,7 +195,6 @@
         </button>
     </nav>
 
-    <!-- Fullscreen Overlay Content Frame Layout -->
     <div class="nav-fullscreen-overlay" id="navOverlay">
         <a href="index.html" class="nav-overlay-link">Home</a>
         <a href="services.html" class="nav-overlay-link" style="color: var(--brand-gold);">Services</a>
@@ -290,39 +240,18 @@
                 </div>
             </div>
         </div>
-
-        <!-- Card 3 -->
-        <div class="tilt-card-wrapper">
-            <div class="service-3d-card">
-                <div class="card-graphic-frame">
-                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=600" alt="Kitchen Deep Cleaning">
-                    <div class="graphic-overlay"></div>
-                </div>
-                <div class="card-body-specs">
-                    <div class="service-icon-marker"><i class="fa-solid fa-kitchen-set"></i></div>
-                    <h2 class="service-heading">Commercial Kitchen Sanitization</h2>
-                    <p class="service-detail-text">Targeted removal of carbonized grease layers inside exhaust hoods, oven setups, tiling channels, and stainless steel food production surfaces.</p>
-                    <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning,%20I'm%20inquiring%20about%20Kitchen%20Sanitization." target="_blank" class="btn-card-routing">Request Quote <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="tilt-card-wrapper">
-            <div class="service-3d-card">
-                <div class="card-graphic-frame">
-                    <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=600" alt="Carpet Extraction">
-                    <div class="graphic-overlay"></div>
-                </div>
-                <div class="card-body-specs">
-                    <div class="service-icon-marker"><i class="fa-solid fa-rug"></i></div>
-                    <h2 class="service-heading">Carpet Scrubbing & Extraction</h2>
-                    <p class="service-detail-text">Heavy-traffic pile washing that lifts ground-in dirt out of delicate fibers, using extraction vacuums and dry blowing modules.</p>
-                    <a href="https://wa.me/254117747358?text=Hello%20JB%20Cleaning,%20I'm%20inquiring%20about%20Carpet%20Extraction." target="_blank" class="btn-card-routing">Request Quote <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
     </main>
+
+    <!-- Synchronized Footer Frame -->
+    <footer class="site-footer">
+        <div class="footer-socials-row">
+            <a href="https://wa.me/254117747358" target="_blank" class="social-icon-node" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://instagram.com" target="_blank" class="social-icon-node" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://facebook.com" target="_blank" class="social-icon-node" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://tiktok.com" target="_blank" class="social-icon-node" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <p class="footer-copyright">&copy; 2026 JB Cleaning Company. All Rights Reserved.</p>
+    </footer>
 
     <script>
         const menuToggle = document.getElementById('menuToggle');
@@ -340,7 +269,6 @@
             }
         });
 
-        // 3D Motion System
         const cards = document.querySelectorAll('.service-3d-card');
         function handleMove(e, card) {
             const rect = card.getBoundingClientRect();
@@ -366,6 +294,7 @@
     </script>
 </body>
 </html>
+
 
 
 
